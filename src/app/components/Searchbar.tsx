@@ -13,7 +13,7 @@ import { Search2Icon } from "@chakra-ui/icons";
  const SearchBar = () => {
   return (
     <>
-      <Container maxW={"3xl"}>
+      <Container mt={8} maxW={"3xl"}>
         <InputGroup borderRadius={5} bg="white" size="lg">
           <InputLeftElement
             pointerEvents="none"

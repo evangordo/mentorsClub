@@ -7,11 +7,13 @@ import {
   Heading,
   Text,
   Stack,
+  Flex,
  
 } from '@chakra-ui/react'
 
 import Image from './Image'
 import linkedin from '../assets/linkedin.jpeg'
+import Activity from './Activity'
 
 export default function Card() {
   return (
@@ -62,15 +64,22 @@ export default function Card() {
           <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
           Tech
           </Text>
-          <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
+          <Flex align="center" >
+          <Heading p={2} fontSize={'2xl'}
+        fontFamily={'body'}
+        fontWeight={500}
+        whiteSpace="nowrap"
+       >
 Evan Gordon
           </Heading>
-          <Stack direction={'row'} align={'center'}>
+          <Activity/>
+          </Flex>
+        
             <Text fontWeight={800} fontSize={'xl'}>
           Senior VP @Google
             </Text>
          
-          </Stack>
+        
         </Stack>
       </Box>
     </Center>

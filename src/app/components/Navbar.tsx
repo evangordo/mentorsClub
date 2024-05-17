@@ -20,12 +20,13 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import Image from './Image'
 import mentor from '../assets/mentor.png'
+import Link from 'next/link'
 
 interface Props {
   children: React.ReactNode
 }
 
-const Links = ['Dashboard', 'Projects', 'Team']
+const Links = ['Find a mentor', 'Projects', 'Team']
 
 const NavLink = (props: Props) => {
   const { children } = props
@@ -63,13 +64,13 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Image src={mentor}  boxSize={isDesktop ? "85px" : "110px"}
+           <Link href='/'> <Image src={mentor}  boxSize={isDesktop ? "85px" : "110px"}
                 alt={"img"}
                
-                objectFit="cover"/>
+                objectFit="cover"/></Link>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <Link href='Mentors' >{link}</Link>
               ))}
             </HStack>
           </HStack>
@@ -102,7 +103,7 @@ export default function Navbar() {
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <Link href='/Mentors'>{link}</Link>
               ))}
             </Stack>
           </Box>

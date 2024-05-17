@@ -18,7 +18,7 @@ import {
   useBreakpointValue
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import Image from './image'
+import Image from './Image'
 import mentor from '../assets/mentor.png'
 
 interface Props {

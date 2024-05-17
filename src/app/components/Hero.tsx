@@ -16,10 +16,12 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import career from '../assets/career.jpg'
-import Image from './image'
+import Image from './Image'
 export default function CallToActionWithVideo() {
   return (
+
     <Container maxW={'7xl'}>
+    
       <Stack
         align={'center'}
         spacing={{ base: 8, md: 10 }}
@@ -50,9 +52,11 @@ export default function CallToActionWithVideo() {
             leading professionals
             </Text>
           </Heading>
+         
           <Text fontSize={'xl'}color={'black.500'}>
          Mentors club is a way for people to get an insight in their career of interest and learn from Irelands mentors 
           </Text>
+   
           <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
             <Button
               rounded={'full'}
@@ -80,7 +84,7 @@ export default function CallToActionWithVideo() {
           align={'center'}
           position={'relative'}
           w={'full'}>
-          <Blob
+          {/* <Blob
             w={'150%'}
             h={'150%'}
             position={'absolute'}
@@ -88,7 +92,8 @@ export default function CallToActionWithVideo() {
             left={0}
             zIndex={-1}
             color={useColorModeValue('red.50', 'red.400')}
-          />
+          /> */}
+         
           <Box
             position={'relative'}
             height={'400px'}
@@ -99,9 +104,14 @@ export default function CallToActionWithVideo() {
        
        <Image  alt ='carer'src={career}/>
           </Box>
+  
+          
         </Flex>
+     
       </Stack>
+  
     </Container>
+  
   )
 }
 

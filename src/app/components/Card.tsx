@@ -14,11 +14,24 @@ import {
 import Image from './Image'
 import linkedin from '../assets/linkedin.jpeg'
 import Activity from './Activity'
+import { motion } from "framer-motion";
+import Link from 'next/link'
+
 
 export default function Card() {
   return (
     <Center py={12}>
+          <motion.div
+   
+   whileHover={{ scale: 1.05 }}
+
+   
+    >
       <Box
+       _hover={{
+        background: "white",
+        color: "green.400",
+      }}
         role={'group'}
         p={6}
         maxW={'330px'}
@@ -61,6 +74,7 @@ export default function Card() {
        
         </Box>
         <Stack pt={10} align={'center'}>
+          <Link href={`/Mentors/$`}>
           <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
           Tech
           </Text>
@@ -78,10 +92,11 @@ Evan Gordon
             <Text fontWeight={800} fontSize={'xl'}>
           Senior VP @Google
             </Text>
-         
+            </Link>
         
         </Stack>
       </Box>
+      </motion.div>
     </Center>
   )
 }

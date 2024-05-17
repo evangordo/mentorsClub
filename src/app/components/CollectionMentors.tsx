@@ -5,7 +5,7 @@ import Card from './Card'
 export default function CollectionMentors() {
   return (
    <Container mt={8}maxW={'9xl'}>
-    <SimpleGrid columns ={[1,1,5]}>
+    <SimpleGrid  spacing={4}columns ={[1,1,5]}>
         <Card/>
         <Card/>
         <Card/>

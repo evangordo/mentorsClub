@@ -54,7 +54,7 @@ export default function Card() {
             pos: 'absolute',
             top: 5,
             left: 0,
-            // backgroundImage: `url(${IMAGE})`,
+          
             filter: 'blur(15px)',
             zIndex: -1,
           }}
@@ -75,7 +75,7 @@ export default function Card() {
         </Box>
         <Stack pt={10} align={'center'}>
           <Link href={`/Mentors/$`}>
-          <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
+          <Text align='center'color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
           Tech
           </Text>
           <Flex align="center" >

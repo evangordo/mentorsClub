@@ -2,7 +2,14 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    username: {
+    firstName: {
+      type: String,
+      required: true,
+      unique: true,
+      minlength: 3,
+      maxlength: 20,
+    },
+    lastName: {
       type: String,
       required: true,
       unique: true,
@@ -24,7 +31,7 @@ const userSchema = new mongoose.Schema(
     },
     industry: {
       type: String,
-      required: true,
+      required: false,
     },
     about: {
       type: String,

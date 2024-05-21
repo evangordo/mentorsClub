@@ -48,6 +48,7 @@ const NavLink = (props: Props) => {
 }
 
 export default function Navbar() {
+  
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
   const { isOpen, onOpen, onClose } = useDisclosure()

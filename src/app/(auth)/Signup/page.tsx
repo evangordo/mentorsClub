@@ -1,4 +1,8 @@
 'use client'
+import {register} from '../../lib/actions'
+import { useFormState } from "react-dom";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Flex,
@@ -15,15 +19,22 @@ import {
   Text,
   useColorModeValue,
   Link,
-  Checkbox,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import Image from '../components/Image'
-import google from '../assets/googleSignin.png'
+import Image from '../../components/Image'
+import google from '../../assets/googleSignin.png'
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false)
+
+  const [state, formAction] = useFormState(register, undefined);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    state?.success && router.push("/Role");
+  }, [state?.success, router]);
 
   return (
     <Flex
@@ -32,6 +43,7 @@ export default function SignupCard() {
       justify={'center'}
 >
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      <form action={formAction}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} textAlign={'center'}>
             Sign up
@@ -45,54 +57,46 @@ export default function SignupCard() {
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
           p={8}>
+          
           <Stack spacing={4}>
+         
             <HStack>
+   
               <Box>
+            
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input name ='firstName'type="text" />
                 </FormControl>
               </Box>
               <Box>
-                <FormControl id="lastName" isRequired>
+                <FormControl id="lastName">
                   <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
+                  <Input name='lastName' type="text" />
                 </FormControl>
               </Box>
             </HStack>
-            <HStack mt={2}>
-            
-            <FormLabel >I want to signup as a:</FormLabel>
-            <Stack spacing={5} direction='row'>
-  <Checkbox colorScheme='green' defaultChecked>
-    Mentor
-  </Checkbox>
-  <Checkbox colorScheme='green' defaultChecked>
-    Mentee
-  </Checkbox>
-</Stack>
-
-</HStack>
-         
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input name ='email' type="email" />
             </FormControl>
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input  name ='password' type={showPassword ? 'text' : 'password'} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
-                    onClick={() => setShowPassword((showPassword) => !showPassword)}>
+                    onClick={() => setShowPassword((showPassword: any) => !showPassword)}>
                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
               </InputGroup>
             </FormControl>
+         
             <Stack spacing={10} pt={2}>
               <Button
+              type="submit"
                 loadingText="Submitting"
                 size="lg"
                 bg={'green.400'}
@@ -103,23 +107,25 @@ export default function SignupCard() {
                 Sign up
               </Button>
             </Stack>
-            {/* <Text align={'center'}>
+            <Text align={'center'}>
              Or
               </Text>
-              
               <Button
-         
+              
               variant='outline'
-              borderColor='grey.500'
+              borderRadius='lg'
                 loadingText="Submitting"
                 size="lg"
-                bg={'grey.400'}
-                color={'black'}
+                bg={'#464768'}
+                color={'white'}
                 _hover={{
                   bg: 'grey.500',
                 }}>
-                Sign up with 
-       </Button> */}
+                  <Box bg='white'p={0} m={2} rounded={'full'}justifyContent={'start'}>
+              <Image boxSize={10}src ={google}alt='signin'/>  
+              </Box>  
+               Sign up with Google
+         </Button>
             <Stack pt={6}>
                 
               <Text align={'center'}>
@@ -127,7 +133,9 @@ export default function SignupCard() {
               </Text>
             </Stack>
           </Stack>
+      
         </Box>
+        </form>
       </Stack>
     </Flex>
   )

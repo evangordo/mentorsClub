@@ -19,6 +19,8 @@ import {
   Text,
   useColorModeValue,
   Link,
+  RadioGroup,
+  Radio,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
@@ -28,12 +30,14 @@ import google from '../../assets/googleSignin.png'
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false)
 
+  const [role, setRole] = useState('mentee') 
+
   const [state, formAction] = useFormState(register, undefined);
 
   const router = useRouter();
 
   useEffect(() => {
-    state?.success && router.push("/Role");
+    state?.success && router.push("/");
   }, [state?.success, router]);
 
   return (
@@ -75,7 +79,16 @@ export default function SignupCard() {
                   <Input name='lastName' type="text" />
                 </FormControl>
               </Box>
+
             </HStack>
+            <FormControl as="fieldset" isRequired>
+            <RadioGroup defaultValue="mentee" onChange={setRole}>
+                  <HStack spacing="24px">
+                  <Radio name="role" value="mentor">Mentor</Radio>
+                    <Radio name="role" value="mentee">Mentee</Radio>
+                  </HStack>
+                </RadioGroup>
+                </FormControl> 
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
               <Input name ='email' type="email" />

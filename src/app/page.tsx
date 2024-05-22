@@ -1,4 +1,3 @@
-import { Text, VStack,Stack,useBreakpointValue} from "@chakra-ui/react";
 import Hero from "./components/Hero";
 
 import Companies from "./components/Companies";

@@ -14,7 +14,7 @@ export const handleGoogleLogout = async () => {
 };
 
 export const register = async (previousState, formData) => {
-  const { firstName, lastName, email, password, img } =
+  const { firstName, lastName, email, password, img, role } =
     Object.fromEntries(formData);
 
   try {
@@ -33,6 +33,7 @@ export const register = async (previousState, formData) => {
       firstName,
       lastName,
       email,
+      role,
       password: hashedPassword,
       img,
     });

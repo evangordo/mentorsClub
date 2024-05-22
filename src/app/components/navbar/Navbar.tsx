@@ -18,36 +18,16 @@ import {
   useBreakpointValue
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import Image from './Image'
-import mentor from '../assets/mentor.png'
+import Image from '../Image'
+import mentor from '../../assets/mentor.png'
 import Link from 'next/link'
 
-interface Props {
-  children: React.ReactNode
-}
-
 const Links = ['Find a mentor', 'Projects', 'Team']
+import {  handleLogout } from "../../lib/actions";
 
-const NavLink = (props: Props) => {
-  const { children } = props
 
-  return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={'md'}
-      _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700'),
-      }}
-      href={'#'}>
-      {children}
-    </Box>
-  )
-}
 
-export default function Navbar() {
+export default function Navbar({session} : any) {
   
   const isDesktop = useBreakpointValue({ base: false, lg: true });
 
@@ -75,14 +55,20 @@ export default function Navbar() {
               ))}
             </HStack>
           </HStack>
+     {session?.user ? 
+     <form action={handleLogout}>
+      <button>Logout</button>
+     </form> :
+
           <Flex alignItems={'center'}>
          
 
-            <Button  colorScheme='green'><Link href='/Signup'>Signup</Link></Button>    
+            <Button  colorScheme='green'><Link href='/signup'>Signup</Link></Button>    
           
           </Flex>
-        </Flex>
-
+     
+      }
+         </Flex>
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>

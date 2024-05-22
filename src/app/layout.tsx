@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
-import Navbar from "./components/Navbar";
+import NavbarSession from "./components/navbar/NavbarSession";
 import { Box } from "@chakra-ui/react";
 import Footer from "./components/Footer";
 
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Providers>
         <Box bg="#f5f5ee" minH="100vh">
-        <Navbar/>
+        <NavbarSession/>
             {children}
             <Footer/>
         </Box>

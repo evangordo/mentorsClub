@@ -37,7 +37,7 @@ export default function SignupCard() {
   const router = useRouter();
 
   useEffect(() => {
-    state?.success && router.push("/");
+    state?.success && router.push("/mentoredit");
   }, [state?.success, router]);
 
   return (
@@ -84,6 +84,7 @@ export default function SignupCard() {
             <FormControl as="fieldset" isRequired>
             <RadioGroup defaultValue="mentee" onChange={setRole}>
                   <HStack spacing="24px">
+                    <FormLabel>Im signing up as a:</FormLabel>
                   <Radio name="role" value="mentor">Mentor</Radio>
                     <Radio name="role" value="mentee">Mentee</Radio>
                   </HStack>
@@ -142,7 +143,7 @@ export default function SignupCard() {
             <Stack pt={6}>
                 
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'}>Login</Link>
+                Already a user? <Link href='/Login' color={'blue.400'}>Login</Link>
               </Text>
             </Stack>
           </Stack>

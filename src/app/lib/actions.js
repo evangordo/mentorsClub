@@ -1,5 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { User } from "./models";
 import { connectToDb } from "./utils";
 import { signIn, signOut } from "./auth";
@@ -9,7 +10,7 @@ export const handleGoogleLogin = async () => {
   await signIn("google");
 };
 
-export const handleGoogleLogout = async () => {
+export const handleLogout = async () => {
   await signOut();
 };
 
@@ -45,5 +46,19 @@ export const register = async (previousState, formData) => {
   } catch (err) {
     console.log(err);
     return { error: "Something went wrong!" };
+  }
+};
+export const login = async (prevState, formData) => {
+  const { email, password } = Object.fromEntries(formData);
+  try {
+    console.log("Attempting to sign in:", email);
+    await signIn("credentials", { email, password });
+    return { success: true };
+  } catch (err) {
+    console.log("Error during signIn:", err);
+    if (err.name === "CredentialsSignin") {
+      return { error: "Invalid username or password" };
+    }
+    throw err;
   }
 };

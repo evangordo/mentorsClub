@@ -37,7 +37,7 @@ export default function SignupCard() {
   const router = useRouter();
 
   useEffect(() => {
-    state?.success && router.push("/mentoredit");
+    state?.success && router.push("/mentorinfo");
   }, [state?.success, router]);
 
   return (

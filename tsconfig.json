@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/lib/utils.js", "src/app/lib/auth.js", "src/app/lib/auth.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/lib/utils.js", "src/app/lib/auth.js", "src/app/lib/auth.js", "src/app/components/ImagePicker.js"],
   "exclude": ["node_modules"]
 }

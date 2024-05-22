@@ -24,13 +24,12 @@ import {register} from '../../lib/actions'
 import { useFormState } from "react-dom";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
+import ImagePicker from '@/app/components/ImagePicker';
 
 import { useState } from 'react'
 import { Editor } from "primereact/editor";
 
 import { SmallCloseIcon } from '@chakra-ui/icons'
-
 export default function UserProfileEdit() {
 
   const router = useRouter();
@@ -76,7 +75,7 @@ export default function UserProfileEdit() {
       <Stack
         spacing={4}
         w={'full'}
-        maxW={'xl'}
+        maxW={'2xl'}
         bg={useColorModeValue('white', 'gray.700')}
         rounded={'xl'}
         boxShadow={'lg'}
@@ -85,30 +84,22 @@ export default function UserProfileEdit() {
         <Heading lineHeight={1.1} fontSize={{ base: '2xl', sm: '3xl' }}>
         Add Profile
         </Heading>
+        <form action=''>
         <FormControl id="userName">
-          <FormLabel>Add Icon</FormLabel>
+          <FormLabel>Your profile</FormLabel>
           
           <Stack direction={['column', 'row']} spacing={6}>
-            <Center>
-              <Avatar size="xl" src="https://bit.ly/sage-adebayo">
-                <AvatarBadge
-                  as={IconButton}
-                  size="sm"
-                  rounded="full"
-                  top="-10px"
-                  colorScheme="red"
-                  aria-label="remove Image"
-                  icon={<SmallCloseIcon />}
-                />
-              </Avatar>
-            </Center>
-            <Center w="full">
-              <Button  w="full">Change Icon</Button>
-            </Center>
+          
+           
+         
+            <ImagePicker label='' name='img'/>
+          
           </Stack>
+      
           <FormControl  isRequired>
           <FormLabel>Your profession</FormLabel>
           <Input
+          name='career'
             placeholder="E.g. Journalist @ The Irish Times"
             _placeholder={{ color: 'gray.500' }}
             type="text"
@@ -133,7 +124,7 @@ export default function UserProfileEdit() {
             }}
           />
           <FormLabel requiredIndicator>Your Industry</FormLabel>
-          <Select>
+          <Select name='industry'>
   <option value='option1'>Technology</option>
   <option value='option2'>Entertainment</option>
   <option value='option3'>Sports</option>
@@ -167,11 +158,11 @@ export default function UserProfileEdit() {
                       style={{ height: "320px" }}
                     /> */}
          <FormControl as="fieldset" isRequired>
-            <RadioGroup defaultValue="mentee" >
+            <RadioGroup name="available" defaultValue="mentee" >
                   <HStack spacing="24px">
                     <FormLabel>Im available for now:</FormLabel>
-                  <Radio name="role" value="mentor">Yes</Radio>
-                    <Radio name="role" value="mentee">No</Radio>
+                  <Radio name="role" value="true">Yes</Radio>
+                    <Radio name="role" value="false">No</Radio>
                   </HStack>
                 </RadioGroup>
                 </FormControl> 
@@ -187,6 +178,7 @@ export default function UserProfileEdit() {
             Submit
           </Button>
         </Stack>
+        </form>
       </Stack>
     </Flex>
   )

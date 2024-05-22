@@ -31,6 +31,22 @@ const userSchema = new mongoose.Schema(
     },
     industry: {
       type: String,
+      enum: [
+        "Technology",
+        "Entertainment",
+        "Sports",
+        "Healthcare",
+        "Finance",
+        "Education",
+        "Manufacturing",
+        "Real Estate",
+        "Hospitality",
+        "Agriculture",
+        "Automotive",
+        "Legal Services",
+        "Marketing and Advertising",
+        "Transportation",
+      ],
       required: false,
     },
     about: {
@@ -54,7 +70,7 @@ const userSchema = new mongoose.Schema(
     // Mentor specific fields
     career: {
       type: String,
-      maxlength: 500,
+      maxlength: 300,
     },
     mentoringTopics: {
       type: String,

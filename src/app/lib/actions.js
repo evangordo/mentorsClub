@@ -48,6 +48,33 @@ export const register = async (previousState, formData) => {
     return { error: "Something went wrong!" };
   }
 };
+
+export const updateUserProfile = async (previousState, formData) => {
+  const { email, career, about, img, available } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return { error: "User not found" };
+    }
+
+    user.career = career;
+    user.about = about;
+    user.img = img;
+    user.available = available === "true";
+
+    await user.save();
+    console.log("User profile updated");
+
+    return { success: true };
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
+  }
+};
+
 export const login = async (prevState, formData) => {
   const { email, password } = Object.fromEntries(formData);
   try {

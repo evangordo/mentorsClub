@@ -27,7 +27,8 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     img: {
-      type: String,
+      data: Buffer,
+      contentType: Buffer,
     },
     industry: {
       type: String,

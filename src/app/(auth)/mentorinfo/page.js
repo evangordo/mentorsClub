@@ -43,14 +43,14 @@ export default function UserProfileEdit() {
     formAction(formData);
   };
 
-  function onEditorChange(e) {
-    // adding this so it doesnt show the <p> tags on the client
-    const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
-    setMentoringTopics((prevValues) => ({
-      ...prevValues,
-      mentoringTopics: textOnly,
-    }));
-  }
+  // function onEditorChange(e) {
+  //   // adding this so it doesnt show the <p> tags on the client
+  //   const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
+  //   setMentoringTopics((prevValues) => ({
+  //     ...prevValues,
+  //     mentoringTopics: textOnly,
+  //   }));
+  // }
 
   return (
     <Flex
@@ -137,7 +137,7 @@ export default function UserProfileEdit() {
             name="mentoringTopics"
             id="mentoringTopics"
             value={mentoringTopics}
-            onTextChange={onEditorChange}
+            onTextChange={(e) => setMentoringTopics(e.htmlValue)}
             style={{ height: "320px" }}
           />
           <FormControl as="fieldset" isRequired>

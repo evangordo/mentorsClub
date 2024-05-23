@@ -50,7 +50,8 @@ export const register = async (previousState, formData) => {
 };
 
 export const updateUserProfile = async (previousState, formData) => {
-  const { email, career, about, img, available } = Object.fromEntries(formData);
+  const { email, career, about, img, available, mentoringTopics } =
+    Object.fromEntries(formData);
 
   try {
     connectToDb();
@@ -63,6 +64,7 @@ export const updateUserProfile = async (previousState, formData) => {
     user.career = career;
     user.about = about;
     user.img = img;
+    user.mentoringTopics = mentoringTopics;
     user.available = available === "true";
 
     await user.save();

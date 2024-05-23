@@ -14,19 +14,23 @@ import {
   RadioGroup,
   Radio,
 } from "@chakra-ui/react";
+import { Editor } from "primereact/editor";
 import { updateUserProfile } from "../../lib/actions";
 import { useFormState } from "react-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ImagePicker from "@/app/components/ImagePicker";
-import { SmallCloseIcon } from "@chakra-ui/icons";
 
 export default function UserProfileEdit() {
+  const [mentoringTopics, setMentoringTopics] = useState("");
+
   const router = useRouter();
   const [state, formAction] = useFormState(updateUserProfile, undefined);
 
   useEffect(() => {
-    state?.success && router.push("/confirmation");
+    if (state?.success) {
+      router.push("/confirmation");
+    }
   }, [state?.success, router]);
 
   const handleSubmit = (event) => {
@@ -34,8 +38,18 @@ export default function UserProfileEdit() {
     const formData = new FormData(event.target);
     const email = localStorage.getItem("userEmail"); // Retrieve email from local storage
     formData.append("email", email);
+    formData.append("mentoringTopics", mentoringTopics);
     formAction(formData);
   };
+
+  function onEditorChange(e) {
+    // adding this so it doesnt show the <p> tags on the client
+    const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
+    setMentoringTopics((prevValues) => ({
+      ...prevValues,
+      mentoringTopics: textOnly,
+    }));
+  }
 
   return (
     <Flex
@@ -83,13 +97,22 @@ export default function UserProfileEdit() {
           </FormLabel>
           <Textarea
             name="about"
-            placeholder="you@example.com"
+            placeholder="Tell us about yourself"
             rows={5}
             shadow="sm"
             focusBorderColor="brand.400"
             fontSize={{
               sm: "sm",
             }}
+          />
+          <FormLabel>Mentoring topics</FormLabel>
+          <Editor
+            color="black"
+            name="mentoringTopics"
+            id="mentoringTopics"
+            value={mentoringTopics}
+            onTextChange={onEditorChange}
+            style={{ height: "320px" }}
           />
           <FormControl as="fieldset" isRequired>
             <RadioGroup name="available" defaultValue="true">

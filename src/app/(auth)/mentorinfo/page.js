@@ -13,6 +13,7 @@ import {
   Textarea,
   RadioGroup,
   Radio,
+  Select,
 } from "@chakra-ui/react";
 import { Editor } from "primereact/editor";
 import { updateUserProfile } from "../../lib/actions";
@@ -72,20 +73,44 @@ export default function UserProfileEdit() {
           Add Profile
         </Heading>
         <form onSubmit={handleSubmit}>
-          <FormControl id="userName">
+          <FormControl isRequired id="userName">
             <FormLabel>Your profile</FormLabel>
             <Stack direction={["column", "row"]} spacing={6}>
-              {/* <ImagePicker label="" name="img" /> */}
+              <ImagePicker label="" name="img" />
+
+              <FormControl isRequired>
+                <FormLabel>Your industry</FormLabel>
+                <Select name="industry">
+                  <option value="Technology">Technology</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Education">Education</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="RealEstate">Real Estate</option>
+                  <option value="Hospitality">Hospitality</option>
+                  <option value="Agriculture">Agriculture</option>
+                  <option value="Automotive">Automotive</option>
+                  <option value="LegalServices">Legal Services</option>
+                  <option value="MarketingandAdvertising">
+                    Marketing and Advertising
+                  </option>
+                  <option value="Transportation">Transportation</option>
+                </Select>
+              </FormControl>
             </Stack>
-            <FormControl isRequired>
-              <FormLabel>Your profession</FormLabel>
-              <Input
-                name="career"
-                placeholder="E.g. Journalist @ The Irish Times"
-                _placeholder={{ color: "gray.500" }}
-                type="text"
-              />
-            </FormControl>
+            <HStack>
+              <FormControl isRequired>
+                <FormLabel>Your profession</FormLabel>
+                <Input
+                  name="career"
+                  placeholder="E.g. Journalist @ The Irish Times"
+                  _placeholder={{ color: "gray.500" }}
+                  type="text"
+                />
+              </FormControl>
+            </HStack>
           </FormControl>
           <FormLabel
             color="gray.700"
@@ -105,6 +130,7 @@ export default function UserProfileEdit() {
               sm: "sm",
             }}
           />
+
           <FormLabel>Mentoring topics</FormLabel>
           <Editor
             color="black"

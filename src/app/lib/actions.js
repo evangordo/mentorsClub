@@ -50,7 +50,7 @@ export const register = async (previousState, formData) => {
 };
 
 export const updateUserProfile = async (previousState, formData) => {
-  const { email, career, about, img, available, mentoringTopics } =
+  const { email, career, about, img, available, industry, mentoringTopics } =
     Object.fromEntries(formData);
 
   try {
@@ -64,6 +64,7 @@ export const updateUserProfile = async (previousState, formData) => {
     user.career = career;
     user.about = about;
     user.img = img;
+    user.industry = industry;
     user.mentoringTopics = mentoringTopics;
     user.available = available === "true";
 

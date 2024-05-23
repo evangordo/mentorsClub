@@ -33,16 +33,23 @@ export default function SignupCard() {
   const [state, formAction] = useFormState(register, undefined);
   const router = useRouter();
 
-  const handleSignUpSuccess = (email) => {
+  const handleSignUpSuccess = (email, role) => {
     localStorage.setItem("userEmail", email);
-    router.push("/mentorinfo");
+    localStorage.setItem("userRole", role);
+    if (role === "mentor") {
+      router.push("/mentorinfo");
+    } else if (role === "mentee") {
+      router.push("/menteeinfo");
+    } else {
+      router.push("/");
+    }
   };
 
   useEffect(() => {
     if (state?.success) {
       const formData = new FormData(document.querySelector("form"));
       const email = formData.get("email");
-      handleSignUpSuccess(email);
+      handleSignUpSuccess(email, role);
     }
   }, [state?.success]);
 

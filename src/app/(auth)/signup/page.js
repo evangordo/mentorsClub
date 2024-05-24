@@ -1,7 +1,7 @@
 "use client";
 import { register } from "../../lib/actions";
 import { useFormState } from "react-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -22,10 +22,10 @@ import {
   RadioGroup,
   Radio,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Image from "../../components/Image";
 import google from "../../assets/googleSignin.png";
+import toast from "react-toastify";
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
@@ -53,11 +53,32 @@ export default function SignupCard() {
     }
   }, [state?.success]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     formAction(formData);
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: formData.get("firstName"),
+          email: formData.get("email"),
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Your email message has been sent successfully");
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch (error) {
+      toast.error("Error sending email: " + error.message);
+    }
   };
 
   return (
@@ -129,7 +150,6 @@ export default function SignupCard() {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-
               <Stack spacing={10} pt={2}>
                 <Button
                   type="submit"

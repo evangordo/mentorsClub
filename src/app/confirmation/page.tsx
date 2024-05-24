@@ -12,6 +12,7 @@ import {
   useColorModeValue,
   createIcon,
 } from '@chakra-ui/react'
+import Link from 'next/link'
 
 export default function CallToActionWithAnnotation() {
   return (
@@ -23,18 +24,17 @@ export default function CallToActionWithAnnotation() {
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 36 }}>
           <Heading
+          color={'green.400'}
             fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+            fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
             lineHeight={'110%'}>
-            Welcome to Mentors club!<br />
-            <Text as={'span'} color={'green.400'}>
-              your audience
+            Welcome to the Mentors club!<br />
+            <Text as={'span'} color={'grey'}>
+              Log in to continue!
             </Text>
           </Heading>
           <Text color={'gray.500'}>
-            Monetize your content by charging your most loyal readers and reward them
-            loyalty points. Give back to your loyal readers by granting them access to
-            your pre-releases and sneak-peaks.
+          You've joined the club! Get to meet and mentor many for a good cause!
           </Text>
           <Stack
             direction={'column'}
@@ -50,13 +50,11 @@ export default function CallToActionWithAnnotation() {
               _hover={{
                 bg: 'green.500',
               }}>
-              Get Started
+            <Link href='Login'>Log in</Link>  
             </Button>
-            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
-              Learn more
-            </Button>
+          
             <Box>
-              <Icon
+              {/* <Icon
                 as={Arrow}
                 color={useColorModeValue('gray.800', 'gray.300')}
                 w={71}
@@ -72,7 +70,7 @@ export default function CallToActionWithAnnotation() {
                 top={'-15px'}
                 transform={'rotate(10deg)'}>
                 Starting at $15/mo
-              </Text>
+              </Text> */}
             </Box>
           </Stack>
         </Stack>

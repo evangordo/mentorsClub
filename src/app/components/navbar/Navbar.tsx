@@ -57,7 +57,7 @@ export default function Navbar({session} : any) {
           </HStack>
      {session?.user ? 
      <form action={handleLogout}>
-      <button>Logout</button>
+      <Button type='submit'>Logout</Button>
      </form> :
 
           <Flex alignItems={'center'}>

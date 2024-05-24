@@ -55,6 +55,7 @@ export default function SignupCard() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     formAction(formData);
   };

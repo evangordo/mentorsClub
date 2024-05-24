@@ -20,10 +20,13 @@ import { updateUserProfile } from "../../lib/actions";
 import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ImagePicker from "@/app/components/ImagePicker";
 
 export default function UserProfileEdit() {
   const [mentoringTopics, setMentoringTopics] = useState("");
+  const [file, setFile] = useState(null);
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
 
   const router = useRouter();
   const [state, formAction] = useFormState(updateUserProfile, undefined);
@@ -40,17 +43,18 @@ export default function UserProfileEdit() {
     const email = localStorage.getItem("userEmail"); // Retrieve email from local storage
     formData.append("email", email);
     formData.append("mentoringTopics", mentoringTopics);
+    formData.append("img", file);
     formAction(formData);
   };
 
-  // function onEditorChange(e) {
-  //   // adding this so it doesnt show the <p> tags on the client
-  //   const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
-  //   setMentoringTopics((prevValues) => ({
-  //     ...prevValues,
-  //     mentoringTopics: textOnly,
-  //   }));
-  // }
+  function onEditorChange(e) {
+    // adding this so it doesnt show the <p> tags on the client
+    const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
+    setMentoringTopics((prevValues) => ({
+      ...prevValues,
+      mentoringTopics: textOnly,
+    }));
+  }
 
   return (
     <Flex
@@ -76,7 +80,7 @@ export default function UserProfileEdit() {
           <FormControl isRequired id="userName">
             <FormLabel>Your profile</FormLabel>
             <Stack direction={["column", "row"]} spacing={6}>
-              <ImagePicker label="" name="img" />
+              <Input type="file" name="img" onChange={handleFileChange} />
 
               <FormControl isRequired>
                 <FormLabel>Your industry</FormLabel>

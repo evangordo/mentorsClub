@@ -4,7 +4,10 @@ import { redirect } from "next/navigation";
 import { User } from "./models";
 import { connectToDb } from "./utils";
 import { signIn, signOut } from "./auth";
+import s3Client from "./awsConfig";
 import bcrypt from "bcryptjs";
+import { Upload } from "@aws-sdk/lib-storage";
+import { v4 as uuidv4 } from "uuid";
 
 export const handleGoogleLogin = async () => {
   await signIn("google");
@@ -60,6 +63,27 @@ export const updateUserProfile = async (previousState, formData) => {
       return { error: "User not found" };
     }
 
+    let img = user.img;
+
+    if (formData.get("img")) {
+      const file = formData.get("img");
+      const fileName = `${uuidv4()}-${file.name}`;
+
+      const uploadParams = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: fileName,
+        Body: file,
+        ContentType: file.type,
+      };
+
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      const uploadResult = await parallelUploads3.done();
+      img = uploadResult.Location;
+    }
     user.career = career;
     user.about = about;
     user.img = img;

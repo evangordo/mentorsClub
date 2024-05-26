@@ -8,6 +8,8 @@ import s3Client from "./awsConfig";
 import bcrypt from "bcryptjs";
 import { Upload } from "@aws-sdk/lib-storage";
 import { v4 as uuidv4 } from "uuid";
+import { Resend } from "resend";
+import EmailTemplate from "@/email/welcome";
 
 export const handleGoogleLogin = async () => {
   await signIn("google");
@@ -113,5 +115,30 @@ export const login = async (prevState, formData) => {
       return { error: "Invalid username or password" };
     }
     throw err;
+  }
+};
+
+export const sendEmail = async (prevState, formData) => {
+  const name = formData.get("firstName");
+  const email = formData.get("email");
+
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    await resend.emails.send({
+      from: `Support <${process.env.SENDER_EMAIL}>`,
+      to: email,
+      subject: "Welcome to Mentors Club",
+      react: EmailTemplate({ name, email }),
+    });
+    return {
+      error: null,
+      success: true,
+    };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return {
+      error: error.message,
+      success: false,
+    };
   }
 };

@@ -1,27 +1,20 @@
-import * as React from 'react';
-import { Html, Button } from "@react-email/components";
+import { Html, Heading, Text } from "@react-email/components"
+const EmailTemplate = ({
+  name,
+  email,
 
-import { Heading } from "@react-email/components";
-
-
-
-
-
-interface WelcomeEmailProps {
-firstName: string
-}
-
-export function Email({firstName}: WelcomeEmailProps) {
-
-
+}: {
+  name: string
+  email: string
+}) => {
   return (
     <Html lang="en">
-      <Button>Click me</Button>
-      <Heading>
- My email {firstName}
-    </Heading>
+      <Heading as="h1">Welcome to the Club!</Heading>
+      <Text>You have just joined the Mentors club!</Text>
+      <Text>Name: {name}</Text>
+      <Text>Email: {email}</Text>
+    
     </Html>
-  );
+  )
 }
-
-export default Email;
+export default EmailTemplate

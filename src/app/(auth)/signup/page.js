@@ -22,16 +22,21 @@ import {
   RadioGroup,
   Radio,
 } from "@chakra-ui/react";
+import { sendEmail } from "../../lib/actions";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Image from "../../components/Image";
 import google from "../../assets/googleSignin.png";
-import toast from "react-toastify";
 
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("mentee");
   const [state, formAction] = useFormState(register, undefined);
   const router = useRouter();
+
+  const [sendEmailState, sendEmailAction] = useFormState(sendEmail, {
+    error: null,
+    success: false,
+  });
 
   const handleSignUpSuccess = (email, role) => {
     localStorage.setItem("userEmail", email);
@@ -48,37 +53,23 @@ export default function SignupCard() {
   useEffect(() => {
     if (state?.success) {
       const formData = new FormData(document.querySelector("form"));
+      sendEmailAction(formData); // Trigger email sending after form submission
       const email = formData.get("email");
       handleSignUpSuccess(email, role);
     }
-  }, [state?.success]);
+    if (sendEmailState.success) {
+      alert("Email sent!");
+    }
+    if (sendEmailState.error) {
+      alert("Error sending email!");
+    }
+  }, [state?.success, sendEmailState]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     formAction(formData);
-
-    try {
-      const response = await fetch("/api/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: formData.get("firstName"),
-          email: formData.get("email"),
-        }),
-      });
-
-      if (response.ok) {
-        toast.success("Your email message has been sent successfully");
-      } else {
-        throw new Error("Failed to send email");
-      }
-    } catch (error) {
-      toast.error("Error sending email: " + error.message);
-    }
   };
 
   return (

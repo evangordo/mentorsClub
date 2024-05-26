@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "email": "email dev --dir src/email"
+    "email":"cp .env ./node_modules/react-email && email dev --dir src/email --port 3001"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.583.0",

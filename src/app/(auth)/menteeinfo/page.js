@@ -16,7 +16,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { Editor } from "primereact/editor";
-import { updateUserProfile } from "../../lib/actions";
+import { UpdateMenteeProfile } from "../../lib/actions";
 import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -29,7 +29,7 @@ export default function MenteeInfo() {
   };
 
   const router = useRouter();
-  const [state, formAction] = useFormState(updateUserProfile, undefined);
+  const [state, formAction] = useFormState(UpdateMenteeProfile, undefined);
 
   useEffect(() => {
     if (state?.success) {
@@ -40,7 +40,8 @@ export default function MenteeInfo() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const email = localStorage.getItem("userEmail"); // Retrieve email from local storage
+    const email = localStorage.getItem("userEmail");
+    const name = localStorage.getItem("firstName"); // Retrieve email from local storage
     formData.append("email", email);
     formData.append("goals", goals);
     formData.append("img", file);

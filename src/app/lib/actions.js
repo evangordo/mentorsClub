@@ -89,12 +89,13 @@ export const updateUserProfile = async (previousState, formData) => {
     user.career = career;
     user.about = about;
     user.img = img;
+
     user.industry = industry;
     user.mentoringTopics = mentoringTopics;
     user.available = available === "true";
 
     await user.save();
-    console.log("User profile updated");
+    console.log("Mentor profile updated");
 
     return { success: true };
   } catch (err) {
@@ -140,5 +141,54 @@ export const sendEmail = async (prevState, formData) => {
       error: error.message,
       success: false,
     };
+  }
+};
+
+export const UpdateMenteeProfile = async (previousState, formData) => {
+  const { email, goals, img, industry, career, about } =
+    Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return { error: "User not found" };
+    }
+
+    let img = user.img;
+
+    if (formData.get("img")) {
+      const file = formData.get("img");
+      const fileName = `${uuidv4()}-${file.name}`;
+
+      const uploadParams = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: fileName,
+        Body: file,
+        ContentType: file.type,
+      };
+
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      const uploadResult = await parallelUploads3.done();
+      img = uploadResult.Location;
+    }
+    user.goals = goals;
+    user.about = about;
+    user.img = img;
+    user.career = career;
+    user.industry = industry;
+
+    await user.save();
+    console.log("Mentee profile updated");
+
+    return { success: true };
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
   }
 };

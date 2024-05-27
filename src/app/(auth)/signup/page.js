@@ -30,6 +30,7 @@ import google from "../../assets/googleSignin.png";
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("mentee");
+
   const [state, formAction] = useFormState(register, undefined);
   const router = useRouter();
 
@@ -38,9 +39,10 @@ export default function SignupCard() {
     success: false,
   });
 
-  const handleSignUpSuccess = (email, role) => {
+  const handleSignUpSuccess = (email, role, name) => {
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userRole", role);
+    localStorage.setItem("firstName", name);
     if (role === "mentor") {
       router.push("/mentorinfo");
     } else if (role === "mentee") {
@@ -55,7 +57,8 @@ export default function SignupCard() {
       const formData = new FormData(document.querySelector("form"));
       sendEmailAction(formData);
       const email = formData.get("email");
-      handleSignUpSuccess(email, role);
+      const firstName = formData.get("firstName");
+      handleSignUpSuccess(email, role, firstName);
     }
     if (sendEmailState.success) {
       alert("Email sent!");

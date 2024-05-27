@@ -53,7 +53,7 @@ export default function SignupCard() {
   useEffect(() => {
     if (state?.success) {
       const formData = new FormData(document.querySelector("form"));
-      sendEmailAction(formData); // Trigger email sending after form submission
+      sendEmailAction(formData);
       const email = formData.get("email");
       handleSignUpSuccess(email, role);
     }

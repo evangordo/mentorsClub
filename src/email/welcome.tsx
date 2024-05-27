@@ -13,6 +13,10 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "";
+
 const EmailTemplate = ({
   name,
 }: {
@@ -27,10 +31,10 @@ const EmailTemplate = ({
     <Body style={main}>
       <Container style={container}>
         <Img
-         src={`/static/mentor.png`}
+         src={`${baseUrl}/static/mentor.png`}
           width="140"
           height="160"
-          alt="Koala"
+          alt="Mentors Club"
         
         />
         <Text style={paragraph}>Hi {name},</Text>

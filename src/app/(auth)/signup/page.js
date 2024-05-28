@@ -115,7 +115,7 @@ export default function SignupCard() {
               <FormControl as="fieldset" isRequired>
                 <RadioGroup defaultValue="mentee" onChange={setRole}>
                   <HStack spacing="24px">
-                    <FormLabel>I'm signing up as a:</FormLabel>
+                    <FormLabel>Im signing up as a:</FormLabel>
                     <Radio name="role" value="mentor">
                       Mentor
                     </Radio>

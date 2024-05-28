@@ -17,15 +17,21 @@ import Activity from './Activity'
 import { motion } from "framer-motion";
 import Link from 'next/link'
 
+export interface MentorProps {
 
-export default function Card() {
+  firstName: string;
+  career: string
+  slug: string;
+  industry: string;
+ 
+}
+
+export default function Card({mentor}:{mentor:MentorProps} ) {
   return (
     <Center py={12}>
           <motion.div
-   
    whileHover={{ scale: 1.05 }}
 
-   
     >
       <Box
        _hover={{
@@ -74,9 +80,9 @@ export default function Card() {
        
         </Box>
         <Stack pt={10} align={'center'}>
-          <Link href={`/Mentors/$`}>
+          <Link href={`/Mentors/${mentor.slug}`}>
           <Text align='center'color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-          Tech
+         {mentor.industry}
           </Text>
           <Flex align="center" >
           <Heading p={2} fontSize={'2xl'}
@@ -84,13 +90,13 @@ export default function Card() {
         fontWeight={500}
         whiteSpace="nowrap"
        >
-Evan Gordon
+{mentor.firstName}
           </Heading>
           <Activity/>
           </Flex>
         
             <Text fontWeight={800} fontSize={'xl'}>
-          Software Dev @
+        {mentor.career}
             </Text>
             </Link>
         

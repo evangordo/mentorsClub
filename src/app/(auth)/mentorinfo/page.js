@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Button,
   Flex,
@@ -138,7 +137,7 @@ export default function UserProfileEdit() {
           <FormControl as="fieldset" isRequired>
             <RadioGroup name="available" defaultValue="true">
               <HStack spacing="24px">
-                <FormLabel>I'm available for now:</FormLabel>
+                <FormLabel>Im available for now</FormLabel>
                 <Radio value="true">Yes</Radio>
                 <Radio value="false">No</Radio>
               </HStack>

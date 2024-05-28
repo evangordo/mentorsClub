@@ -1,9 +1,7 @@
 "use client";
-import { register } from "../../lib/actions";
 import { useFormState } from "react-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-
 import {
   Flex,
   Box,
@@ -30,27 +28,28 @@ import google from "../../assets/googleSignin.png";
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("mentee");
-
   const [state, formAction] = useFormState(register, undefined);
   const router = useRouter();
-
   const [sendEmailState, sendEmailAction] = useFormState(sendEmail, {
     error: null,
     success: false,
   });
 
-  const handleSignUpSuccess = (email, role, name) => {
-    localStorage.setItem("userEmail", email);
-    localStorage.setItem("userRole", role);
-    localStorage.setItem("firstName", name);
-    if (role === "mentor") {
-      router.push("/mentorinfo");
-    } else if (role === "mentee") {
-      router.push("/menteeinfo");
-    } else {
-      router.push("/");
-    }
-  };
+  const handleSignUpSuccess = useCallback(
+    (email, role, name) => {
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userRole", role);
+      localStorage.setItem("firstName", name);
+      if (role === "mentor") {
+        router.push("/mentorinfo");
+      } else if (role === "mentee") {
+        router.push("/menteeinfo");
+      } else {
+        router.push("/");
+      }
+    },
+    [router]
+  );
 
   useEffect(() => {
     if (state?.success) {
@@ -66,11 +65,16 @@ export default function SignupCard() {
     if (sendEmailState.error) {
       alert("Error sending email!");
     }
-  }, [state?.success, sendEmailState]);
+  }, [
+    state?.success,
+    sendEmailState,
+    handleSignUpSuccess,
+    role,
+    sendEmailAction,
+  ]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     const formData = new FormData(event.target);
     formAction(formData);
   };

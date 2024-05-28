@@ -48,7 +48,7 @@ export default function CallToActionWithVideo() {
           </Heading>
          
           <Text fontSize={'xl'}color={'black.500'}>
-          The Mentors Club provides individuals with insights into their career interests and the opportunity to learn from Ireland&apos;s top mentor&apos;s.          </Text>
+          The Mentors Club provides individuals with insights into their career interests and the opportunity to learn from Ireland&apos;s mentor&apos;s.          </Text>
    
           <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
             <Button

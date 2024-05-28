@@ -45,7 +45,7 @@ export default function Confirmation() {
             </Text>
           </Heading>
           <Text color={"gray.500"}>
-            Your signup was successful. We're excited to have you on board.
+            Your signup was successful. We&apos;re excited to have you on board.
           </Text>
           <Stack
             direction={"column"}

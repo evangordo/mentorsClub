@@ -90,7 +90,7 @@ Evan Gordon
           </Flex>
         
             <Text fontWeight={800} fontSize={'xl'}>
-          Senior VP @Google
+          Software Dev @
             </Text>
             </Link>
         

@@ -22,7 +22,7 @@ export default function Confirmation() {
   useEffect(() => {
     const storedUser = localStorage.getItem("firstName");
     if (storedUser) {
-      setUser(storedUser); // No need to parse JSON
+      setUser(storedUser);
     }
   }, []);
 

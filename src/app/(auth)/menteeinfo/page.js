@@ -41,7 +41,7 @@ export default function MenteeInfo() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const email = localStorage.getItem("userEmail");
-    const name = localStorage.getItem("firstName"); // Retrieve email from local storage
+    const name = localStorage.getItem("firstName");
     formData.append("email", email);
     formData.append("goals", goals);
     formData.append("img", file);

@@ -40,7 +40,7 @@ export default function UserProfileEdit() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const email = localStorage.getItem("userEmail"); // Retrieve email from local storage
+    const email = localStorage.getItem("userEmail");
     formData.append("email", email);
     formData.append("mentoringTopics", mentoringTopics);
     formData.append("img", file);

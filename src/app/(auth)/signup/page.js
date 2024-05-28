@@ -83,8 +83,8 @@ export default function SignupCard() {
             <Heading fontSize={"4xl"} textAlign={"center"}>
               Sign up
             </Heading>
-            <Text fontSize={"lg"} color={"gray.600"}>
-              to enjoy all of our cool features ✌️
+            <Text fontSize={"lg"} mb={2} color={"gray.600"}>
+              join the mentors clubs today!
             </Text>
           </Stack>
           <Box

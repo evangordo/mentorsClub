@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/lib/utils.js", "src/app/lib/auth.js", "src/app/lib/auth.js", "src/app/components/ImagePicker.js", "src/app/(auth)/mentorinfo/page.js", "src/app/(auth)/signup/page.js", "src/app/(auth)/menteeinfo/page.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/lib/utils.js", "src/app/lib/auth.js", "src/app/lib/auth.js", "src/app/components/ImagePicker.js", "src/app/(auth)/mentorinfo/page.js", "src/app/(auth)/signup/page.js", "src/app/(auth)/menteeinfo/page.js", "src/app/confirmation/page.js"],
   "exclude": ["node_modules"]
 }

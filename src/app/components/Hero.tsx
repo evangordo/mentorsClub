@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react'
 import career from '../assets/career.jpg'
 import Image from './Image'
+import Link from 'next/link'
 export default function CallToActionWithVideo() {
   return (
 
@@ -54,8 +55,7 @@ export default function CallToActionWithVideo() {
           </Heading>
          
           <Text fontSize={'xl'}color={'black.500'}>
-         Mentors club is a way for people to get an insight in their career of interest and learn from Irelands mentors 
-          </Text>
+          The Mentors Club provides individuals with insights into their career interests and the opportunity to learn from Ireland's top mentors.          </Text>
    
           <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
             <Button
@@ -65,17 +65,17 @@ export default function CallToActionWithVideo() {
               px={6}
               colorScheme={'red'}
               bg={'green.400'}
-              _hover={{ bg: 'red.500' }}>
-              Get started
+              _hover={{ bg: 'green.500' }}>
+          <Link href='/signup'> Get started</Link>   
             </Button>
-            <Button
+            {/* <Button
               rounded={'full'}
               size={'lg'}
               fontWeight={'normal'}
               px={6}
               leftIcon={<PlayIcon h={4} w={4} color={'gray.300'} />}>
               How It Works
-            </Button>
+            </Button> */}
           </Stack>
         </Stack>
         <Flex

@@ -48,15 +48,6 @@ export default function MenteeInfo() {
     formAction(formData);
   };
 
-  function onEditorChange(e) {
-    // adding this so it doesnt show the <p> tags on the client
-    const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
-    setGoals((prevValues) => ({
-      ...prevValues,
-      goals: textOnly,
-    }));
-  }
-
   return (
     <Flex
       minH={"100vh"}

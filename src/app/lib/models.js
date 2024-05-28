@@ -62,12 +62,12 @@ const userSchema = new mongoose.Schema(
       enum: ["mentee", "mentor"],
       required: true,
     },
-    // Mentee specific fields
+
     goals: {
       type: String,
       maxlength: 500,
     },
-    // Mentor specific fields
+
     career: {
       type: String,
       maxlength: 300,

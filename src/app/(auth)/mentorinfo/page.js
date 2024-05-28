@@ -47,15 +47,6 @@ export default function UserProfileEdit() {
     formAction(formData);
   };
 
-  function onEditorChange(e) {
-    // adding this so it doesnt show the <p> tags on the client
-    const textOnly = e.htmlValue.replace(/<\/?[^>]+(>|$)/g, "");
-    setMentoringTopics((prevValues) => ({
-      ...prevValues,
-      mentoringTopics: textOnly,
-    }));
-  }
-
   return (
     <Flex
       minH={"100vh"}
@@ -135,7 +126,7 @@ export default function UserProfileEdit() {
             }}
           />
 
-          <FormLabel>Mentoring topics</FormLabel>
+          <FormLabel>Mentoring topic</FormLabel>
           <Editor
             color="black"
             name="mentoringTopics"

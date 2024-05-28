@@ -20,7 +20,7 @@ import {
   RadioGroup,
   Radio,
 } from "@chakra-ui/react";
-import { sendEmail } from "../../lib/actions";
+import { sendEmail, register } from "../../lib/actions";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import Image from "../../components/Image";
 import google from "../../assets/googleSignin.png";

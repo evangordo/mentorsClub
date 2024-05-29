@@ -1,3 +1,4 @@
+import SingleMentorPage from '@/app/components/SingleMentorPage';
 import { getMentor } from '@/app/lib/data';
 import React from 'react';
 
@@ -8,6 +9,7 @@ interface SingleMentorPageProps {
 }
 
 const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
+  
   const { id } = params;
 
   try {
@@ -19,14 +21,10 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
     }
 
     return (
-      <>
-        <h1>{mentor.lastName}</h1>
-        <h1>{mentor.firstName}</h1>
-        <h1>{mentor.career}</h1>
-        <h1>{mentor.industry}</h1>
-        <h1>{mentor.desc}</h1>
-        <h1>{mentor.title}</h1>
-        <h1>{mentor.about}</h1>
+    <>
+    <SingleMentorPage firstName={mentor.firstName}
+
+    career={mentor.career} about={mentor.about} mentoringTopics={mentor.mentoringTopics}/>
       </>
     );
   } catch (error) {
@@ -36,3 +34,5 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
 };
 
 export default SinglePostPage;
+
+

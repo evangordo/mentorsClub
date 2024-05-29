@@ -62,9 +62,10 @@ interface SingleMentor{
     career: string,
     mentoringTopics: string,
     about: string
+    industry: string
     
 }
-const SingleMentorPage = ({firstName, career, mentoringTopics, about}: SingleMentor) => {
+const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry}: SingleMentor) => {
   return (
     <Container maxW={'7xl'} p="12">
       <Heading as="h1">Mentor {firstName}</Heading>
@@ -113,7 +114,10 @@ const SingleMentorPage = ({firstName, career, mentoringTopics, about}: SingleMen
           flexDirection="column"
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}>
-          <BlogTags tags={['Engineering', 'Product']} />
+        
+          <Tag   alignContent={'start'} variant='solid' colorScheme='green'>
+          {industry}
+    </Tag>
           <Heading marginTop="1">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
              {career}
@@ -124,9 +128,9 @@ const SingleMentorPage = ({firstName, career, mentoringTopics, about}: SingleMen
             marginTop="2"
             // color={useColorModeValue('gray.400', 'gray.200')}
             fontSize="lg">
-         {about}
+       About:  {about}
           </Text>
-          <BlogAuthor name="John Doe" date={new Date('2021-04-06T19:01:27Z')} />
+          {/* <BlogAuthor name="John Doe" date={new Date('2021-04-06T19:01:27Z')} /> */}
         </Box>
       </Box>
      

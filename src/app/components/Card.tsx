@@ -23,6 +23,7 @@ export interface MentorProps {
   career: string
   _id: string;
   industry: string;
+  lastName:string
  
 }
 
@@ -90,7 +91,7 @@ export default function Card({mentor}:{mentor:MentorProps} ) {
         fontWeight={500}
         whiteSpace="nowrap"
        >
-{mentor.firstName}
+{mentor.firstName} {mentor.lastName}
           </Heading>
           <Activity/>
           </Flex>

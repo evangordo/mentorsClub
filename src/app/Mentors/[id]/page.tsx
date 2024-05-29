@@ -23,8 +23,7 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
     return (
     <>
     <SingleMentorPage firstName={mentor.firstName}
-
-    career={mentor.career} about={mentor.about} mentoringTopics={mentor.mentoringTopics}/>
+    industry={mentor.industry}career={mentor.career} about={mentor.about} mentoringTopics={mentor.mentoringTopics}/>
       </>
     );
   } catch (error) {

@@ -1,6 +1,7 @@
 import SingleMentorPage from '@/app/components/SingleMentorPage';
 import { getMentor } from '@/app/lib/data';
-import React from 'react';
+import React, {Suspense} from 'react';
+import Loading from './loading';
 
 interface SingleMentorPageProps {
   params: {
@@ -10,6 +11,7 @@ interface SingleMentorPageProps {
 
 const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
   
+
   const { id } = params;
 
   try {
@@ -22,12 +24,14 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
 
     return (
     <>
+    <Suspense fallback={<Loading/>}>
     <SingleMentorPage
     
     firstName={mentor.firstName}
     lastName={mentor.lastName}
     img={mentor.img}
     industry={mentor.industry}career={mentor.career} about={mentor.about} mentoringTopics={mentor.mentoringTopics}/>
+    </Suspense>
       </>
     );
   } catch (error) {

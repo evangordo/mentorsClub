@@ -6,6 +6,8 @@ import Card from '../components/Card'
 
 const MentorsPage = async()  => {
 const mentors = await getAllMentors()
+
+
 console.log("getting:", mentors);
   return (
     <>

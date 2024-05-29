@@ -2,8 +2,13 @@
 'use client'
 import { Box, Flex, keyframes, Tooltip } from '@chakra-ui/react'
 import React from 'react'
+import { getMentor } from '../lib/data'
 
-export default function Activity() {
+const Activity = async ()  => {
+
+  // const getMnetorsActivity = await getMentor()
+  // if (getMentor)
+
   const activeColor = 'green.500'
   const inactiveColor = 'gray.400'
   const ringScaleMin = 0.33
@@ -77,3 +82,4 @@ export default function Activity() {
     </Flex>
   )
 }
+export default Activity

@@ -28,7 +28,10 @@ export interface MentorProps {
  
 }
 
+
 export default function Card({mentor}:{mentor:MentorProps} ) {
+
+  const fixedToString = mentor._id.toString()
   return (
     <Center py={12}>
           <motion.div
@@ -83,7 +86,7 @@ export default function Card({mentor}:{mentor:MentorProps} ) {
        
         </Box>
         <Stack pt={10} align={'center'}>
-          <Link href={`/mentors/${mentor._id}`}>
+          <Link href={`/mentors/${fixedToString}`}>
           <Text align='center'color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
          {mentor.industry}
           </Text>

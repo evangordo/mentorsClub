@@ -7,13 +7,14 @@ import {
   Text,
   HStack,
   Tag,
+  Flex,
   SpaceProps,
   useColorModeValue,
   Container,
   VStack,
 } from '@chakra-ui/react';
-// import Image from './Image';
-import Image from 'next/image';
+import ChakraImage from './Image';
+// import Image from 'next/image';
 interface IBlogTags {
   tags: Array<string>;
   marginTop?: SpaceProps['marginTop'];
@@ -66,12 +67,15 @@ interface SingleMentor{
     about: string
     industry: string
     img: string
+    lastName: string
     
+
 }
-const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry, img}: SingleMentor) => {
+const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, industry, img}: SingleMentor) => {
   return (
     <Container maxW={'7xl'} p="12">
-      <Heading as="h1">Mentor {firstName}</Heading>
+      <Heading as="h1"> {firstName} {lastName}</Heading>
+      
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -88,18 +92,19 @@ const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry, 
             zIndex="2"
             marginLeft={{ base: '0', sm: '5%' }}
             marginTop="5%">
-            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-              <Image
-                // borderRadius="lg"
-                width={'400'}
-                height={'24'}
-                src={
-                   img
-                }
-                alt="some good alt text"
-                objectFit="contain"
+              
+ <div className='corners2'>
+              <img
+              alt=''
+              // rounded={'lg'}
+              height={430}
+              width={482}
+              // objectFit={'cover'}
+              src={img}
+            
               />
-            </Link>
+              </div>
+  
           </Box>
           <Box zIndex="1" width="100%" position="absolute" height="100%">
             <Box
@@ -122,15 +127,16 @@ const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry, 
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}>
         
-        <Tag  alignContent={'start'} variant='solid'  colorScheme='green'>
-          {industry}
-    </Tag>
-         
+       
+         <Flex>
             <Heading textDecoration="none" _hover={{ textDecoration: 'none' }}>
              {career}
             </Heading>
          
-       
+            <Tag  m={2} variant='solid'  colorScheme='green'>
+          {industry}
+    </Tag>
+    </Flex>
           <Text
             as="p"
             marginTop="2"

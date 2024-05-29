@@ -3,3 +3,8 @@
 @tailwind utilities;
 
 
+
+.corners2 img {
+    border-radius: 20px;
+    padding: 5px; 
+}

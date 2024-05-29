@@ -22,7 +22,10 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
 
     return (
     <>
-    <SingleMentorPage firstName={mentor.firstName}
+    <SingleMentorPage
+    
+    firstName={mentor.firstName}
+    lastName={mentor.lastName}
     img={mentor.img}
     industry={mentor.industry}career={mentor.career} about={mentor.about} mentoringTopics={mentor.mentoringTopics}/>
       </>

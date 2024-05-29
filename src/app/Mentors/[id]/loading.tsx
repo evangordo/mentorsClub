@@ -39,7 +39,7 @@ const Loading = () => {
               
  <div className='corners2'>
  <Skeleton
-        height='60px'
+        height='400px'
      
         fadeDuration={4}
       
@@ -76,31 +76,27 @@ const Loading = () => {
         
     </Tag>
     </Flex>
-          <Text
-            as="p"
-            marginTop="2"
-          
-            fontSize="lg">
+        
             <Stack>
   <Skeleton height='20px' />
   <Skeleton height='20px' />
   <Skeleton height='20px' />
 </Stack>
-          </Text>
+
        
         </Box>
       </Box>
      
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
         <Heading as="h2">Mentoring Topics</Heading>
-        <Text as="p" fontSize="lg">
+      
         <Stack>
   <Skeleton height='20px' />
   <Skeleton height='20px' />
   <Skeleton height='20px' />
 </Stack>
     
-        </Text>
+  
     
       </VStack>
     </Container>

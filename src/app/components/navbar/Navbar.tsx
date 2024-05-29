@@ -46,7 +46,7 @@ export default function Navbar({session} : any) {
                 objectFit="cover"/></Link>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link, index) => (
-                <Link key={index} href='Mentors' >{link}</Link>
+                <Link key={index} href='mentors' >{link}</Link>
               ))}
             </HStack>
           </HStack>

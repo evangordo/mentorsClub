@@ -21,7 +21,7 @@ export interface MentorProps {
 
   firstName: string;
   career: string
-  slug: string;
+  id: string;
   industry: string;
  
 }
@@ -80,7 +80,7 @@ export default function Card({mentor}:{mentor:MentorProps} ) {
        
         </Box>
         <Stack pt={10} align={'center'}>
-          <Link href={`/Mentors/${mentor.slug}`}>
+          <Link href={`/mentors/${mentor.id}`}>
           <Text align='center'color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
          {mentor.industry}
           </Text>

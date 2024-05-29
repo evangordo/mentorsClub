@@ -3,15 +3,13 @@ import React from 'react';
 
 
 interface SingleMentorPageProps {
-  params: {
-    slug: string;
-  };
+  id:  string;
 }
 
-const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
-  const { slug } = params;
+const SinglePostPage = async ({ id }: SingleMentorPageProps) => {
+  
 
-  const mentor = await getMentor(slug);
+  const mentor = await getMentor(id);
   console.log("singleMentor", mentor);
 
   if (!mentor) {

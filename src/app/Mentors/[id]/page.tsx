@@ -14,7 +14,7 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
 
   try {
     const mentor = await getMentor(id);
-    console.log("singleMentor", mentor);
+  
 
     if (!mentor) {
       return <div>Mentor not found</div>;
@@ -23,6 +23,7 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
     return (
     <>
     <SingleMentorPage firstName={mentor.firstName}
+    img={mentor.img}
     industry={mentor.industry}career={mentor.career} about={mentor.about} mentoringTopics={mentor.mentoringTopics}/>
       </>
     );

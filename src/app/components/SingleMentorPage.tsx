@@ -3,7 +3,7 @@ import {
   Box,
   Heading,
   Link,
-  Image,
+ 
   Text,
   HStack,
   Tag,
@@ -12,7 +12,8 @@ import {
   Container,
   VStack,
 } from '@chakra-ui/react';
-
+// import Image from './Image';
+import Image from 'next/image';
 interface IBlogTags {
   tags: Array<string>;
   marginTop?: SpaceProps['marginTop'];
@@ -35,25 +36,26 @@ const BlogTags: React.FC<IBlogTags> = (props) => {
 interface BlogAuthorProps {
   date: Date;
   name: string;
+  img: string
 }
 
 
 
-export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
-  return (
-    <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
-      <Image
-        borderRadius="full"
-        boxSize="40px"
-        src="https://100k-faces.glitch.me/random-image"
-        alt={`Avatar of ${props.name}`}
-      />
-      <Text fontWeight="medium">{props.name}</Text>
-      <Text>—</Text>
-      <Text>{props.date.toLocaleDateString()}</Text>
-    </HStack>
-  );
-};
+// export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
+//   return (
+//     <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
+//       <Image
+//         borderRadius="full"
+//         boxSize="40px"
+//         src={`https://mentorsclub.s3.eu-north-1.amazonaws.com/${props.img}`}
+//         alt={`Avatar of `}
+//       />
+//       <Text fontWeight="medium">{props.name}</Text>
+//       <Text>—</Text>
+//       <Text>{props.date.toLocaleDateString()}</Text>
+//     </HStack>
+//   );
+// };
 
 
 
@@ -63,9 +65,10 @@ interface SingleMentor{
     mentoringTopics: string,
     about: string
     industry: string
+    img: string
     
 }
-const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry}: SingleMentor) => {
+const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry, img}: SingleMentor) => {
   return (
     <Container maxW={'7xl'} p="12">
       <Heading as="h1">Mentor {firstName}</Heading>
@@ -87,9 +90,11 @@ const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry}:
             marginTop="5%">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <Image
-                borderRadius="lg"
+                // borderRadius="lg"
+                width={'400'}
+                height={'24'}
                 src={
-                  'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                   img
                 }
                 alt="some good alt text"
                 objectFit="contain"
@@ -108,6 +113,8 @@ const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry}:
             />
           </Box>
         </Box>
+        
+        
         <Box
           display="flex"
           flex="1"
@@ -115,20 +122,21 @@ const SingleMentorPage = ({firstName, career, mentoringTopics, about, industry}:
           justifyContent="center"
           marginTop={{ base: '3', sm: '0' }}>
         
-          <Tag   alignContent={'start'} variant='solid' colorScheme='green'>
+        <Tag  alignContent={'start'} variant='solid'  colorScheme='green'>
           {industry}
     </Tag>
-          <Heading marginTop="1">
-            <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
+         
+            <Heading textDecoration="none" _hover={{ textDecoration: 'none' }}>
              {career}
-            </Link>
-          </Heading>
+            </Heading>
+         
+       
           <Text
             as="p"
             marginTop="2"
             // color={useColorModeValue('gray.400', 'gray.200')}
             fontSize="lg">
-       About:  {about}
+       {about}
           </Text>
           {/* <BlogAuthor name="John Doe" date={new Date('2021-04-06T19:01:27Z')} /> */}
         </Box>

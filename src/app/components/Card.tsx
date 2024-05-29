@@ -10,7 +10,7 @@ import {
   Flex,
  
 } from '@chakra-ui/react'
-
+// import Image from "next/image";
 import Image from './Image'
 import linkedin from '../assets/linkedin.jpeg'
 import Activity from './Activity'
@@ -24,6 +24,7 @@ export interface MentorProps {
   _id: string;
   industry: string;
   lastName:string
+  img: string
  
 }
 
@@ -75,7 +76,8 @@ export default function Card({mentor}:{mentor:MentorProps} ) {
             height={230}
             width={282}
             objectFit={'cover'}
-            src={linkedin}
+          
+            src={mentor.img}
             alt="#"
           />
        

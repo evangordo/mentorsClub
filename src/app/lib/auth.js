@@ -9,7 +9,7 @@ import { authConfig } from "./auth.config";
 const login = async (credentials) => {
   try {
     connectToDb();
-    const user = await User.findOne({ username: credentials.username });
+    const user = await User.findOne({ email: credentials.email });
 
     if (!user) throw new Error("Wrong credentials!");
 
@@ -61,7 +61,7 @@ export const {
             const newUser = new User({
               username: profile.login,
               email: profile.email,
-              image: profile.avatar_url,
+              // image: profile.avatar_url,
             });
 
             await newUser.save();

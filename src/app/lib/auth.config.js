@@ -1,6 +1,6 @@
 export const authConfig = {
   pages: {
-    signIn: "/login",
+    signIn: "/Login",
   },
   providers: [],
   callbacks: {
@@ -21,16 +21,16 @@ export const authConfig = {
     authorized({ auth, request }) {
       const user = auth?.user;
       const isOnAdminPanel = request.nextUrl?.pathname.startsWith("/admin");
-      const isOnBlogPage = request.nextUrl?.pathname.startsWith("/blog");
+      // const isOnBlogPage = request.nextUrl?.pathname.startsWith("/blog");
       const isOnLoginPage = request.nextUrl?.pathname.startsWith("/Login");
 
       if (isOnAdminPanel && !user?.isAdmin) {
         return false;
       }
 
-      if (isOnBlogPage && !user) {
-        return false;
-      }
+      // if (isOnBlogPage && !user) {
+      //   return false;
+      // }
 
       if (isOnLoginPage && user) {
         return Response.redirect(new URL("/", request.nextUrl));

@@ -2,18 +2,15 @@ import React from 'react'
 import {
     Box,
     Center,
-    useColorModeValue,
-    Heading,
-    Text,
+
     Stack,
-    Image,
     Skeleton,
     SkeletonText,
     Container,
     SimpleGrid
   } from '@chakra-ui/react'  
 
-export default function Loading() {
+export default function LoadingCards() {
   return (
     <Container mt={8}maxW={'9xl'}>
     <SimpleGrid  spacing={4}columns ={[1,1,5]}>

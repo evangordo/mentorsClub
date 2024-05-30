@@ -17,7 +17,7 @@ const Loading = () => {
   return (
     <Container maxW={'7xl'} p="12">
       <Heading as="h1"> 
-      <Skeleton startColor='green.500' height='20px' />
+      <Skeleton maxW={'300px'}height='20px' />
       </Heading>
       
       <Box
@@ -69,12 +69,12 @@ const Loading = () => {
        
          <Flex>
             <Heading textDecoration="none" _hover={{ textDecoration: 'none' }}>
-            <Skeleton startColor='green.500' height='20px' />
+            <Skeleton maxW={'300px'} height='20px' />
             </Heading>
          
-            <Tag  m={2} variant='solid'  colorScheme='green'>
+            {/* <Tag  m={2} variant='solid'  colorScheme='green'>
         
-    </Tag>
+    </Tag> */}
     </Flex>
         
             <Stack>

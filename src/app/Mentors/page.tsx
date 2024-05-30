@@ -5,8 +5,8 @@ import { Container, Heading, SimpleGrid } from '@chakra-ui/react'
 import Card from '../components/Card'
 import Loading from './loading'
 
-const MentorsPage = async()  => {
-const mentors = await getAllMentors()
+const MentorsPage =  ()  => {
+// const mentors = await getAllMentors()
 
 
 
@@ -29,4 +29,4 @@ const mentors = await getAllMentors()
   )
 }
 
-export default MentorsPage
+export default MentorsPage;

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   Box,
@@ -11,22 +11,16 @@ import {
   useColorModeValue,
   Stack,
   useBreakpointValue
-} from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import Image from '../Image'
-import mentor from '../../assets/mentor.png'
-import Link from 'next/link'
+} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import Image from '../Image';
+import mentor from '../../assets/mentor.png';
+import Link from 'next/link';
+import { handleLogout } from "../../lib/actions";
 
-const Links = ['Find a mentor', 'Projects', 'Team']
-import {  handleLogout } from "../../lib/actions";
-
-
-
-export default function Navbar({session} : any) {
-  
+export default function Navbar({ session }: any) {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
-
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -40,46 +34,33 @@ export default function Navbar({session} : any) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-           <Link href='/'> <Image src={mentor}  boxSize={isDesktop ? "85px" : "110px"}
-                alt={"img"}
-               
-                objectFit="cover"/></Link>
+            <Link href='/'>
+              <Image src={mentor} boxSize={isDesktop ? "85px" : "110px"} alt={"img"} objectFit="cover" />
+            </Link>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link, index) => (
-                <Link key={index} href='/mentors' >{link}</Link>
-              ))}
+              <Link href='/mentors'>Find a Mentor</Link>
             </HStack>
           </HStack>
-     {session?.user ? 
-     <form action={handleLogout}>
-      <Button type='submit'>Logout</Button>
-     </form> :
-
-          <Flex alignItems={'center'}>
-         
-
-            <Button  colorScheme='green'><Link href='/signup'>Signup</Link></Button>    
-          
-          </Flex>
-     
-      }
-         </Flex>
+          {session?.user ? 
+            <form action={handleLogout}>
+              <Button type='submit'>Logout</Button>
+            </form>
+          : 
+            <Flex alignItems={'center'}>
+              <Button colorScheme='green'>
+                <Link href='/signup'>Signup</Link>
+              </Button>    
+            </Flex>
+          }
+        </Flex>
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-            {Links.map((link, index) => (
-        <Link key={index} href='/mentors'>{link}</Link>
-      ))}
+              <Link href='/mentors'>Find a Mentor</Link>
             </Stack>
           </Box>
         ) : null}
       </Box>
-
-    
     </>
-  )
+  );
 }
-
-
-
-

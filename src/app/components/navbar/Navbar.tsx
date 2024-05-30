@@ -46,7 +46,7 @@ export default function Navbar({session} : any) {
                 objectFit="cover"/></Link>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link, index) => (
-                <Link key={index} href='mentors' >{link}</Link>
+                <Link key={index} href='/mentors' >{link}</Link>
               ))}
             </HStack>
           </HStack>
@@ -68,7 +68,7 @@ export default function Navbar({session} : any) {
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
             {Links.map((link, index) => (
-        <Link key={index} href='/Mentors'>{link}</Link>
+        <Link key={index} href='/mentors'>{link}</Link>
       ))}
             </Stack>
           </Box>

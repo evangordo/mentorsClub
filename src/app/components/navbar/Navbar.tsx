@@ -38,7 +38,7 @@ export default function Navbar({ session }: any) {
               <Image src={mentor} boxSize={isDesktop ? "85px" : "110px"} alt={"img"} objectFit="cover" />
             </Link>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-              <Link href='/mentors'>Find a Mentor</Link>
+              <Link href='/Mentors'>Find a Mentor</Link>
             </HStack>
           </HStack>
           {session?.user ? 

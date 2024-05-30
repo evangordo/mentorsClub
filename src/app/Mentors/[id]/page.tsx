@@ -1,7 +1,7 @@
 import SingleMentorPage from '@/app/components/SingleMentorPage';
 import { getMentor } from '@/app/lib/data';
 import React, {Suspense} from 'react';
-import LoadingCards from './loading';
+import Loading from './loading';
 
 interface SingleMentorPageProps {
   params: {
@@ -24,7 +24,7 @@ const SinglePostPage = async ({ params }: SingleMentorPageProps) => {
 
     return (
     <>
-    <Suspense fallback={<LoadingCards/>}>
+    <Suspense fallback={<Loading/>}>
     <SingleMentorPage
     
     firstName={mentor.firstName}

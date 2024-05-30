@@ -14,7 +14,7 @@ console.log("getting:", mentors);
     <>
     <SearchBar/>
     <Container mt={8}maxW={'9xl'}>
-      <Suspense  fallback={<Loading/>}>
+      {/* <Suspense  fallback={<Loading/>}> */}
     <SimpleGrid  spacing={4}columns ={[1,1,5]}>
       {mentors.map((mentor) => (
 <div key={mentor.id}>
@@ -22,7 +22,7 @@ console.log("getting:", mentors);
 </div>
       ))}
     </SimpleGrid>
-    </Suspense>
+    {/* </Suspense> */}
    </Container>
     </>
   )

@@ -3,7 +3,7 @@ import SearchBar from '../components/Searchbar'
 import {getAllMentors} from '../lib/data'
 import { Container, SimpleGrid } from '@chakra-ui/react'
 import Card from '../components/Card'
-import Loading from './loading'
+// import Loading from './loading'
 
 const MentorsPage = async()  => {
 const mentors = await getAllMentors()

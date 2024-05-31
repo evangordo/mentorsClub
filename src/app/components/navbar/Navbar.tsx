@@ -24,7 +24,22 @@ import mentor from '../../assets/mentor.png';
 import Link from 'next/link';
 import { handleLogout } from "../../lib/actions";
 
-export default function Navbar({ session }: any) {
+
+interface UserProps {
+  email: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  img: string;
+  isAdmin: boolean;
+}
+
+interface SessionProps {
+  user: UserProps;
+  expires: string;
+}
+export default function Navbar({ session }:{ session: SessionProps}) {
   const isDesktop = useBreakpointValue({ base: false, lg: true });
   const { isOpen, onOpen, onClose } = useDisclosure();
 

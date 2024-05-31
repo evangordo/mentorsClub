@@ -1,3 +1,5 @@
+import { getMentor } from "./data";
+
 export const authConfig = {
   pages: {
     signIn: "/Login",
@@ -11,19 +13,20 @@ export const authConfig = {
         token.lastName = user.lastName;
         token.email = user.email;
         token.role = user.role;
-        //  session.user.img = user.img;
+        token.img = user.img;
         token.isAdmin = user.isAdmin;
       }
       return token;
     },
     async session({ session, user, token }) {
       if (token) {
+        // session = await getMentor(token.accessToken);
         session.user.id = token.id;
         session.user.firstName = token.firstName;
         session.user.lastName = token.lastName;
         session.user.email = token.email;
         session.user.role = token.role;
-        // session.user.img = user.img;
+        session.user.img = token.img;
         session.user.isAdmin = token.isAdmin;
       }
       return session;

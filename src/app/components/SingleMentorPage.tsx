@@ -2,61 +2,19 @@ import React from 'react';
 import {
   Box,
   Heading,
-  Link,
+
  
   Text,
-  HStack,
+
   Tag,
   Flex,
-  SpaceProps,
-  useColorModeValue,
+
   Container,
   VStack,
 } from '@chakra-ui/react';
 import ChakraImage from './Image';
-// import Image from 'next/image';
-interface IBlogTags {
-  tags: Array<string>;
-  marginTop?: SpaceProps['marginTop'];
-}
-
-const BlogTags: React.FC<IBlogTags> = (props) => {
-  return (
-    <HStack spacing={2} marginTop={props.marginTop}>
-      {props.tags.map((tag) => {
-        return (
-          <Tag size={'md'} variant="solid" colorScheme="orange" key={tag}>
-            {tag}
-          </Tag>
-        );
-      })}
-    </HStack>
-  );
-};
-
-interface BlogAuthorProps {
-  date: Date;
-  name: string;
-  img: string
-}
 
 
-
-// export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
-//   return (
-//     <HStack marginTop="2" spacing="2" display="flex" alignItems="center">
-//       <Image
-//         borderRadius="full"
-//         boxSize="40px"
-//         src={`https://mentorsclub.s3.eu-north-1.amazonaws.com/${props.img}`}
-//         alt={`Avatar of `}
-//       />
-//       <Text fontWeight="medium">{props.name}</Text>
-//       <Text>—</Text>
-//       <Text>{props.date.toLocaleDateString()}</Text>
-//     </HStack>
-//   );
-// };
 
 
 
@@ -144,7 +102,10 @@ const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, 
             fontSize="lg">
        {about}
           </Text>
-          {/* <BlogAuthor name="John Doe" date={new Date('2021-04-06T19:01:27Z')} /> */}
+          <Text>
+       Member since:     new Date('2021-04-06T19:01:27Z')
+
+</Text>
         </Box>
       </Box>
      
@@ -153,22 +114,7 @@ const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, 
         <Text as="p" fontSize="lg">
         {mentoringTopics}
         </Text>
-        {/* <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
-          pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
-          imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
-          sapien. Suspendisse placerat vulputate posuere. Curabitur neque
-          tortor, mattis nec lacus non, placerat congue elit.
-        </Text>
-        <Text as="p" fontSize="lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          condimentum quam arcu, eu tempus tortor molestie at. Vestibulum
-          pretium condimentum dignissim. Vestibulum ultrices vitae nisi sed
-          imperdiet. Mauris quis erat consequat, commodo massa quis, feugiat
-          sapien. Suspendisse placerat vulputate posuere. Curabitur neque
-          tortor, mattis nec lacus non, placerat congue elit.
-        </Text> */}
+     
       </VStack>
     </Container>
   );

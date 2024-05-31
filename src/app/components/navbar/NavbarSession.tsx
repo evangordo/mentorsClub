@@ -8,6 +8,9 @@ const NavbarSession = async () => {
   const session = await auth();
   // const mentor = await getMentor()
   console.log('user is logged in',session);
+
+
+
   return (
     <div>
    

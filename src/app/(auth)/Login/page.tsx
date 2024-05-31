@@ -1,6 +1,6 @@
 'use client'
 import { login } from "../../lib/actions";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import Link from "next/link";
@@ -17,6 +17,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  Spinner
 } from '@chakra-ui/react'
 
 export default function SimpleCard() {
@@ -30,6 +31,15 @@ export default function SimpleCard() {
 
     
   return (
+    <Suspense fallback={
+      <Spinner
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>
+    }>
     <Flex
       minH={'80vh'}
       align={'center'}
@@ -80,5 +90,6 @@ export default function SimpleCard() {
         </form>
       </Stack>
     </Flex>
+    </Suspense>
   )
 }

@@ -1,13 +1,12 @@
 import React, { Suspense } from 'react'
 import SearchBar from '../components/Searchbar'
 import {getAllMentors} from '../lib/data'
-import { Container, Heading, SimpleGrid } from '@chakra-ui/react'
+import { Container, SimpleGrid } from '@chakra-ui/react'
 import Card from '../components/Card'
 import Loading from './loading'
 
-const MentorsPage = async ()  => {
+const MentorsPage =  async ()  => {
 const mentors = await getAllMentors()
-
 
 
   return (

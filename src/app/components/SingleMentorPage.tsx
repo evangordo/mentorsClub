@@ -97,7 +97,7 @@ const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, 
               <img
               alt=''
               // rounded={'lg'}
-              height={430}
+              height={230}
               width={482}
               // objectFit={'cover'}
               src={img}

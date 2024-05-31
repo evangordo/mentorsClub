@@ -10,7 +10,13 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
-  useBreakpointValue
+  useBreakpointValue,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Text
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Image from '../Image';
@@ -23,44 +29,65 @@ export default function Navbar({ session }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={'center'}>
-            <Link href='/'>
-              <Image src={mentor} boxSize={isDesktop ? "85px" : "110px"} alt={"img"} objectFit="cover" />
-            </Link>
-            <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-              <Link href='/Mentors'>Find a Mentor</Link>
-            </HStack>
+    <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <IconButton
+          size={'md'}
+          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+          aria-label={'Open Menu'}
+          display={{ md: 'none' }}
+          onClick={isOpen ? onClose : onOpen}
+        />
+        <HStack spacing={8} alignItems={'center'}>
+          <Link href='/'>
+            <Image src={mentor} boxSize={isDesktop ? "85px" : "110px"} alt="Mentor Club Logo" objectFit="cover" />
+          </Link>
+          <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+            <Link href='/Mentors'>Find a Mentor</Link>
           </HStack>
-          {session?.user ? 
-            <form action={handleLogout}>
+        </HStack>
+        {session?.user ? (
+          <Menu>
+            <MenuButton
+              as={Button}
+              rounded={'full'}
+              variant={'link'}
+              cursor={'pointer'}
+              minW={0}
+            >
+           
+              <Avatar size={'sm'} src={session.user.img || ''}  />
+            </MenuButton>
+            <MenuList>
+            <Text>{session.user.email}</Text>
+            <Text>{session.user.id}</Text>
+   
+           <Button type='submit'>  <Link href='/editprofile'>Profile</Link></Button> 
+            
+              <MenuDivider />
+              <form action={handleLogout}>
               <Button type='submit'>Logout</Button>
             </form>
-          : 
-            <Flex alignItems={'center'}>
-              <Button colorScheme='green'>
-                <Link href='/signup'>Signup</Link>
-              </Button>    
-            </Flex>
-          }
-        </Flex>
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              <Link href='/mentors'>Find a Mentor</Link>
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-    </>
+            </MenuList>
+          </Menu>
+        ) : (
+          <Stack direction={'row'} spacing={4}>
+            <Button colorScheme="green">
+              <Link href='/signup'>Signup</Link>
+            </Button>
+            <Button>
+              <Link href='/Login'>Login</Link>
+            </Button>
+          </Stack>
+        )}
+      </Flex>
+      {isOpen ? (
+        <Box pb={4} display={{ md: 'none' }}>
+          <Stack as={'nav'} spacing={4}>
+            <Link href='/Mentors'>Find a Mentor</Link>
+          </Stack>
+        </Box>
+      ) : null}
+    </Box>
   );
 }

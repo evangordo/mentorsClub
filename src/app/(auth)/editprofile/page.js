@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Button,
   Flex,
@@ -15,20 +16,35 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { Editor } from "primereact/editor";
-import { updateUserProfile } from "../../lib/actions";
-import { useFormState } from "react-dom";
+import { EditUserProfile } from "../../lib/actions";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getMentor } from "@/app/lib/data";
 
-export default function UserProfileEdit() {
+export default function EditProfile({ session }) {
   const [mentoringTopics, setMentoringTopics] = useState("");
   const [file, setFile] = useState(null);
-  const handleFileChange = (event: any) => {
+
+  const [userData, setUserData] = useState(null);
+
+  const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
 
   const router = useRouter();
-  const [state, formAction] = useFormState(updateUserProfile, undefined);
+  const [state, setState] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const email = session.user.id;
+      const response = await getMentor(email);
+      console.log("this is the response", response);
+
+      setUserData(response);
+    };
+
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
     if (state?.success) {
@@ -36,12 +52,14 @@ export default function UserProfileEdit() {
     }
   }, [state?.success, router]);
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const email = localStorage.getItem("userEmail");
     formData.append("mentoringTopics", mentoringTopics);
-  
+    formData.append("email", session.user.email);
+
+    const result = await EditUserProfile(null, formData);
+    setState(result);
   };
 
   return (
@@ -62,7 +80,7 @@ export default function UserProfileEdit() {
         my={12}
       >
         <Heading lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
-          Add Profile
+          Edit Profile
         </Heading>
         <form onSubmit={handleSubmit}>
           <FormControl isRequired id="userName">
@@ -97,8 +115,8 @@ export default function UserProfileEdit() {
                 <FormLabel>Your profession</FormLabel>
                 <Input
                   name="career"
-                  placeholder="E.g. Journalist @ The Irish Times"
-                  _placeholder={{ color: "gray.500" }}
+                  // defaultValue={userData.career}
+                  // _placeholder={{ color: "gray.500" }}
                   type="text"
                 />
               </FormControl>
@@ -129,7 +147,7 @@ export default function UserProfileEdit() {
             name="mentoringTopics"
             id="mentoringTopics"
             value={mentoringTopics}
-            // onTextChange={(e) => setMentoringTopics(e.htmlValue)}
+            onTextChange={(e) => setMentoringTopics(e.htmlValue)}
             style={{ height: "320px" }}
           />
           <FormControl as="fieldset" isRequired>

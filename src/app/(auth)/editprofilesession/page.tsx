@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar"
+import EditProfile from "../editprofile/page";
 
 
 import { auth } from "../../lib/auth"
@@ -12,7 +12,7 @@ const NavbarSession = async () => {
     <div>
    
       <div>
-        <Navbar session={session}   />
+        <EditProfile session={session}   />
      
       </div>
     </div>

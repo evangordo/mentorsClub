@@ -192,3 +192,64 @@ export const UpdateMenteeProfile = async (previousState, formData) => {
     return { error: "Something went wrong!" };
   }
 };
+
+export const EditUserProfile = async (previousState, formData) => {
+  const {
+    goals,
+    firstName,
+    lastName,
+    img,
+    mentoringTopics,
+    career,
+    industry,
+    about,
+  } = Object.fromEntries(formData);
+
+  try {
+    connectToDb();
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return { error: "User not found" };
+    }
+
+    let imgUrl = user.img;
+
+    if (formData.get("img")) {
+      const file = formData.get("img");
+      const fileName = `${uuidv4()}-${file.name}`;
+
+      const uploadParams = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: fileName,
+        Body: file,
+        ContentType: file.type,
+      };
+
+      const parallelUploads3 = new Upload({
+        client: s3Client,
+        params: uploadParams,
+      });
+
+      const uploadResult = await parallelUploads3.done();
+      imgUrl = uploadResult.Location;
+    }
+
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.goals = goals;
+    user.about = about;
+    user.img = imgUrl;
+    user.career = career;
+    user.industry = industry;
+    user.mentoringTopics = mentoringTopics;
+
+    await user.save();
+    console.log("User profile updated");
+
+    return { success: true };
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!" };
+  }
+};

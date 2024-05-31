@@ -5,10 +5,11 @@ export const getAllMentors = async () => {
   try {
     connectToDb();
     const mentors = await User.find({ role: "mentor" });
+
     return mentors;
   } catch (error) {
     console.log(error);
-    throw new Error("Failed to fetch posts");
+    throw new Error("Failed to fetch Mentors");
   }
 };
 
@@ -19,6 +20,6 @@ export const getMentor = async (id) => {
     return user;
   } catch (error) {
     console.log(error);
-    throw new Error("Failed to fetch posts");
+    throw new Error("Failed to fetch User");
   }
 };

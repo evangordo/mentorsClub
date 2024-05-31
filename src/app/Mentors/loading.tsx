@@ -8,9 +8,12 @@ import {
     Container,
     SimpleGrid
   } from '@chakra-ui/react'  
+import SearchBar from '../components/Searchbar'
 
 export default function Loading() {
   return (
+    <>
+    <SearchBar/>
     <Container mt={8}maxW={'9xl'}>
     <SimpleGrid  spacing={4}columns ={[1,1,5]}>
     
@@ -24,6 +27,7 @@ export default function Loading() {
     </SimpleGrid>
 
    </Container>
+   </>
   )
 }
 

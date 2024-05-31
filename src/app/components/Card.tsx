@@ -86,7 +86,7 @@ export default function Card({mentor}:{mentor:MentorProps} ) {
        
         </Box>
         <Stack pt={10} align={'center'}>
-          <Link href={`/mentors/${fixedToString}`}>
+          <Link href={`/Mentors/${fixedToString}`}>
           <Text align='center'color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
          {mentor.industry}
           </Text>

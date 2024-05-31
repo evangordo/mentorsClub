@@ -5,8 +5,14 @@ import { Container, SimpleGrid } from '@chakra-ui/react'
 import Card from '../components/Card'
 import Loading from './loading'
 
+
+const gettingMentors = async () => {
+  const res = await getAllMentors();
+  return res;
+};
+
 const MentorsPage =  async ()  => {
-const mentors = await getAllMentors()
+  const mentors = await JSON.parse(JSON.stringify(await gettingMentors()));
 
 
   return (
@@ -15,7 +21,7 @@ const mentors = await getAllMentors()
     <Container mt={8}maxW={'9xl'}>
       <Suspense  fallback={<Loading/>}>
     <SimpleGrid  spacing={4}columns ={[1,1,5]}>
-      {mentors.map((mentor) => (
+      {mentors.map((mentor: any) => (
 <div key={mentor.id}>
 <Card mentor={mentor}/>
 </div>

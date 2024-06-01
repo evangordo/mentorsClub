@@ -4,7 +4,7 @@ import { Box, Flex, keyframes, Tooltip } from '@chakra-ui/react'
 import React from 'react'
 import { getMentor } from '../lib/data'
 
-const Activity = async ()  => {
+const Activity =  ()  => {
 
   // const getMnetorsActivity = await getMentor()
   // if (getMentor)

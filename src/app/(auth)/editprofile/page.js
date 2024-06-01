@@ -36,7 +36,7 @@ export default function EditProfile({ session }) {
 
   useEffect(() => {
     const fetchUserData = async () => {
-      const email = session.user.id;
+      const email = session.user.email;
       const response = await getMentor(email);
       console.log("this is the response", response);
 

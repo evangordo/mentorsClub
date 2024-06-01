@@ -103,7 +103,7 @@ const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, 
        {about}
           </Text>
           <Text>
-       Member since:     new Date('2021-04-06T19:01:27Z')
+       Member since:     new Date(2021-04-06T19:01:27Z)
 
 </Text>
         </Box>

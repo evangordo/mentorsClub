@@ -13,19 +13,19 @@ import Image from './Image'
 import Link from 'next/link'
 export default function CallToActionWithVideo() {
   return (
-
     <Container maxW={'7xl'}>
-    
       <Stack
         align={'center'}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
-        direction={{ base: 'column', md: 'row' }}>
+        direction={{ base: 'column', md: 'row' }}
+      >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading
             lineHeight={1.1}
             fontWeight={600}
-            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}>
+            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+          >
             <Text
               as={'span'}
               position={'relative'}
@@ -38,19 +38,26 @@ export default function CallToActionWithVideo() {
                 left: 0,
                 bg: 'red.400',
                 zIndex: -1,
-              }}>
+              }}
+            >
               Mentor with Ireland&apos;s
             </Text>
             <br />
             <Text as={'span'} color={'green.400'}>
-            leading professional&apos;s
+              leading professional&apos;s
             </Text>
           </Heading>
-         
-          <Text fontSize={'xl'}color={'black.500'}>
-          The Mentors Club provides individuals with insights into their career interests and the opportunity to learn from Ireland&apos;s mentor&apos;s.          </Text>
-   
-          <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
+
+          <Text fontSize={'xl'} color={'black.500'}>
+            The Mentors Club provides individuals with insights into their
+            career interests and the opportunity to learn from Ireland&apos;s
+            mentor&apos;s.{' '}
+          </Text>
+
+          <Stack
+            spacing={{ base: 4, sm: 6 }}
+            direction={{ base: 'column', sm: 'row' }}
+          >
             <Button
               rounded={'full'}
               size={'lg'}
@@ -58,8 +65,9 @@ export default function CallToActionWithVideo() {
               px={6}
               colorScheme={'red'}
               bg={'green.400'}
-              _hover={{ bg: 'green.500' }}>
-          <Link href='/signup'> Get started</Link>   
+              _hover={{ bg: 'green.500' }}
+            >
+              <Link href='/signup'> Get started</Link>
             </Button>
           </Stack>
         </Stack>
@@ -68,27 +76,20 @@ export default function CallToActionWithVideo() {
           justify={'center'}
           align={'center'}
           position={'relative'}
-          w={'full'}>
-     
-         
+          w={'full'}
+        >
           <Box
             position={'relative'}
             height={'400px'}
             rounded={'2xl'}
             boxShadow={'2xl'}
             width={'full'}
-            overflow={'hidden'}>
-       
-       <Image  alt ='carer'src={career}/>
+            overflow={'hidden'}
+          >
+            <Image alt='carer' src={career} />
           </Box>
-  
-          
         </Flex>
-     
       </Stack>
-  
     </Container>
-  
   )
 }
-

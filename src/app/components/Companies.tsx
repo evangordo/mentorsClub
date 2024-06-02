@@ -12,9 +12,8 @@ import {
   SimpleGrid,
   Center,
   HStack,
-  useBreakpointValue
+  useBreakpointValue,
 } from '@chakra-ui/react'
-
 
 interface Props {
   children: React.ReactNode
@@ -29,92 +28,58 @@ import salesforce from '../assets/salesforce.png'
 import ryanair from '../assets/ryanair.svg'
 
 export default function Companies() {
-
-  
   return (
-
-    
     <Box bg={useColorModeValue('gray.100', 'gray.700')}>
-      
- 
       <Container maxW={'7xl'} py={16} as={Stack} spacing={12}>
-   
-   
         <Stack spacing={0} align={'center'}>
-   
           <Heading>From Instiutions such as</Heading>
-        
-        <Text>Talk to professions from various companies across Ireland</Text>
-       
-     
+          <Text>Talk to professions from various companies across Ireland</Text>
         </Stack>
-    
         <Center>
-        <CompanyImages/>
+          <CompanyImages />
         </Center>
-       
       </Container>
-   
-
     </Box>
-  
-   
   )
 }
 
-
-const CompanyImages = ()=>{
+const CompanyImages = () => {
   const isDesktop = useBreakpointValue({
     base: false,
     md: false,
     lg: true,
     xl: true,
-  });
-  
-  return(
+  })
+
+  return (
     <Container maxW={'7xl'}>
       <Center>
- {isDesktop ? 
- 
-<HStack
-mt={-12}
-    spacing={{ base: 10, md: 10}}
+        {isDesktop ? (
+          <HStack mt={-12} spacing={{ base: 10, md: 10 }}>
+            <Image alt='image' boxSize={40} src={google} />
 
-  >
-    
-      <Image alt = 'image'boxSize={40}src={google} />
-  
-   
-      <Image alt = 'image'height = {38} src={hubspot} />
-  
-   
-      <Image alt = 'image' height = {64} src={dcu} />
-  
-   
-      <Image alt = 'image' height = {30} src={times} />
-  
-      <Image alt = 'image' boxSize = {60}src={ryanair} />
+            <Image alt='image' height={38} src={hubspot} />
 
-  
- 
-  </HStack> : <SimpleGrid column={[2,2,5]}>
-  <Image alt = 'image'boxSize={40}src={google} />
-  
-   
-  <Image alt = 'image'height = {38} src={hubspot} />
+            <Image alt='image' height={64} src={dcu} />
 
+            <Image alt='image' height={30} src={times} />
 
-  <Image alt = 'image' height = {64} src={dcu} />
+            <Image alt='image' boxSize={60} src={ryanair} />
+          </HStack>
+        ) : (
+          <SimpleGrid column={[2, 2, 5]}>
+            <Image alt='image' boxSize={40} src={google} />
 
+            <Image alt='image' height={38} src={hubspot} />
 
-  <Image alt = 'image' height = {30} src={times} />
+            <Image alt='image' height={64} src={dcu} />
 
-  <Image alt = 'image' boxSize = {60}src={ryanair} />
+            <Image alt='image' height={30} src={times} />
 
-
-    </SimpleGrid>}   
-  </Center>
-  </Container>
+            <Image alt='image' boxSize={60} src={ryanair} />
+          </SimpleGrid>
+        )}
+      </Center>
+    </Container>
   )
-
 }

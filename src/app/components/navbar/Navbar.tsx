@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import {
   Box,
@@ -16,32 +16,31 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  Text
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import Image from '../Image';
-import mentor from '../../assets/mentor.png';
-import Link from 'next/link';
-import { handleLogout } from "../../lib/actions";
-
+  Text,
+} from '@chakra-ui/react'
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import Image from '../Image'
+import mentor from '../../assets/mentor.png'
+import Link from 'next/link'
+import { handleLogout } from '../../lib/actions'
 
 interface UserProps {
-  email: string;
-  id: string;
-  firstName: string;
-  lastName: string;
-  role: string;
-  img: string;
-  isAdmin: boolean;
+  email: string
+  id: string
+  firstName: string
+  lastName: string
+  role: string
+  img: string
+  isAdmin: boolean
 }
 
 interface SessionProps {
-  user: UserProps;
-  expires: string;
+  user: UserProps
+  expires: string
 }
-export default function Navbar({ session }:{ session: SessionProps}) {
-  const isDesktop = useBreakpointValue({ base: false, lg: true });
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function Navbar({ session }: { session: SessionProps }) {
+  const isDesktop = useBreakpointValue({ base: false, lg: true })
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -55,7 +54,12 @@ export default function Navbar({ session }:{ session: SessionProps}) {
         />
         <HStack spacing={8} alignItems={'center'}>
           <Link href='/'>
-            <Image src={mentor} boxSize={isDesktop ? "85px" : "110px"} alt="Mentor Club Logo" objectFit="cover" />
+            <Image
+              src={mentor}
+              boxSize={isDesktop ? '85px' : '110px'}
+              alt='Mentor Club Logo'
+              objectFit='cover'
+            />
           </Link>
           <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
             <Link href='/Mentors'>Find a Mentor</Link>
@@ -70,24 +74,26 @@ export default function Navbar({ session }:{ session: SessionProps}) {
               cursor={'pointer'}
               minW={0}
             >
-           
-              <Avatar size={'sm'} src={session.user.img || ''}  />
+              <Avatar size={'sm'} src={session.user.img || ''} />
             </MenuButton>
             <MenuList>
-            <Text>{session.user.email}</Text>
-            <Text>{session.user.id}</Text>
-   
-           <Button type='submit'>  <Link href='/editprofile'>Profile</Link></Button> 
-            
+              <Text>{session.user.email}</Text>
+              <Text>{session.user.id}</Text>
+
+              <Button type='submit'>
+                {' '}
+                <Link href='/editprofile'>Profile</Link>
+              </Button>
+
               <MenuDivider />
               <form action={handleLogout}>
-              <Button type='submit'>Logout</Button>
-            </form>
+                <Button type='submit'>Logout</Button>
+              </form>
             </MenuList>
           </Menu>
         ) : (
           <Stack direction={'row'} spacing={4}>
-            <Button colorScheme="green">
+            <Button colorScheme='green'>
               <Link href='/signup'>Signup</Link>
             </Button>
             <Button>
@@ -104,5 +110,5 @@ export default function Navbar({ session }:{ session: SessionProps}) {
         </Box>
       ) : null}
     </Box>
-  );
+  )
 }

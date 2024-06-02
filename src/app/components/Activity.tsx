@@ -1,11 +1,9 @@
-
 'use client'
 import { Box, Flex, keyframes, Tooltip } from '@chakra-ui/react'
 import React from 'react'
 import { getMentor } from '../lib/data'
 
-const Activity =  ()  => {
-
+const Activity = () => {
   // const getMnetorsActivity = await getMentor()
   // if (getMentor)
 
@@ -45,22 +43,15 @@ const Activity =  ()  => {
   `
 
   return (
-    <Flex
-
-      justifyContent="center"
-      alignItems="center"
-    
-    
-    >
-      <Tooltip label={`Status: Available`} textTransform="capitalize">
+    <Flex justifyContent='center' alignItems='center'>
+      <Tooltip label={`Status: Available`} textTransform='capitalize'>
         <Box
-         
-          h="24px"
-          w="24px"
-          mb="1.99em"
-          position="relative"
+          h='24px'
+          w='24px'
+          mb='1.99em'
+          position='relative'
           bgColor={activeColor}
-          borderRadius="50%"
+          borderRadius='50%'
           _before={{
             content: "''",
             position: 'relative',

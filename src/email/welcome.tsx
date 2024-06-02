@@ -1,4 +1,3 @@
-
 import {
   Body,
   Button,
@@ -10,19 +9,14 @@ import {
   Preview,
   Section,
   Text,
-} from "@react-email/components";
-import * as React from "react";
+} from '@react-email/components'
+import * as React from 'react'
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : "";
+  : ''
 
-const EmailTemplate = ({
-  name,
-}: {
-  name: string,
-}) => 
-
+const EmailTemplate = ({ name }: { name: string }) => (
   <Html>
     <Head />
     <Preview>
@@ -31,16 +25,13 @@ const EmailTemplate = ({
     <Body style={main}>
       <Container style={container}>
         <Img
-         src={`${baseUrl}/static/mentor.png`}
-          width="140"
-          height="160"
-          alt="Mentors Club"
-        
+          src={`${baseUrl}/static/mentor.png`}
+          width='140'
+          height='160'
+          alt='Mentors Club'
         />
         <Text style={paragraph}>Hi {name},</Text>
-        <Text style={paragraph}>
-          Welcome to Mentors Club
-        </Text>
+        <Text style={paragraph}>Welcome to Mentors Club</Text>
         <Section style={btnContainer}>
           {/* <Button style={button} href="https://getkoala.com">
             Get started
@@ -52,55 +43,51 @@ const EmailTemplate = ({
           Evan from The Mentors Club
         </Text>
         <Hr style={hr} />
-        <Text style={footer}>
-          Dublin 9
-        </Text>
+        <Text style={footer}>Dublin 9</Text>
       </Container>
     </Body>
   </Html>
+)
 
-
-
-export default EmailTemplate;
+export default EmailTemplate
 
 const main = {
-  backgroundColor: "#ffffff",
+  backgroundColor: '#ffffff',
   fontFamily:
     '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-};
+}
 
 const container = {
-  margin: "0 auto",
-  padding: "20px 0 48px",
-};
-
+  margin: '0 auto',
+  padding: '20px 0 48px',
+}
 
 const paragraph = {
-  fontSize: "16px",
-  lineHeight: "26px",
-};
+  fontSize: '16px',
+  lineHeight: '26px',
+}
 
 const btnContainer = {
-  textAlign: "center" as const,
-};
+  textAlign: 'center' as const,
+}
 
 const button = {
-  backgroundColor: "#5F51E8",
-  borderRadius: "3px",
-  color: "#fff",
-  fontSize: "16px",
-  textDecoration: "none",
-  textAlign: "center" as const,
-  display: "block",
-  padding: "12px",
-};
+  backgroundColor: '#5F51E8',
+  borderRadius: '3px',
+  color: '#fff',
+  fontSize: '16px',
+  textDecoration: 'none',
+  textAlign: 'center' as const,
+  display: 'block',
+  padding: '12px',
+}
 
 const hr = {
-  borderColor: "#cccccc",
-  margin: "20px 0",
-};
+  borderColor: '#cccccc',
+  margin: '20px 0',
+}
 
 const footer = {
-  color: "#8898aa",
-  fontSize: "12px",
-};
+  color: '#8898aa',
+  fontSize: '12px',
+}

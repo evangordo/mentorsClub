@@ -2,12 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 .corners2 img {
-    border-radius: 20px;
-    padding: 5px; 
-    height: 230;
-    width: 282;
-    object-fit: cover;
+  border-radius: 20px;
+  padding: 5px;
+  height: 230;
+  width: 282;
+  object-fit: cover;
 }

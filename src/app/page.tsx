@@ -1,19 +1,14 @@
-import Hero from "./components/Hero";
+import Hero from './components/Hero'
 
-import Companies from "./components/Companies";
-import CollectionMentors from "./components/CollectionMentors";
-
-
+import Companies from './components/Companies'
+import CollectionMentors from './components/CollectionMentors'
 
 export default function Home() {
   return (
-<>
-   
-<Hero/>
-
-<Companies/>
-
-<CollectionMentors/>
-</>
-  );
+    <>
+      <Hero />
+      <Companies />
+      <CollectionMentors />
+    </>
+  )
 }

@@ -33,7 +33,8 @@ const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, 
   return (
     <Container maxW={'7xl'} p="12">
       <Heading as="h1"> {firstName} {lastName}</Heading>
-      
+           
+    
       <Box
         marginTop={{ base: '1', sm: '5' }}
         display="flex"
@@ -87,13 +88,10 @@ const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, 
         
        
          <Flex>
-            <Heading textDecoration="none" _hover={{ textDecoration: 'none' }}>
-             {career}
+            <Heading textDecoration="none" color={"green.400"} _hover={{ textDecoration: 'none' }}>
+            About
             </Heading>
          
-            <Tag  m={2} variant='solid'  colorScheme='green'>
-          {industry}
-    </Tag>
     </Flex>
           <Text
             as="p"
@@ -109,9 +107,9 @@ const SingleMentorPage = ({firstName, lastName, career, mentoringTopics, about, 
         </Box>
       </Box>
      
-      <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
-        <Heading as="h2">Mentoring Topics</Heading>
-        <Text as="p" fontSize="lg">
+      <VStack paddingTop="40px"  spacing="2" alignItems="flex-start">
+        <Heading color={"green.400"} as="h2">Mentoring Topics</Heading>
+        <Text as="p"  fontSize="lg">
         {mentoringTopics}
         </Text>
      

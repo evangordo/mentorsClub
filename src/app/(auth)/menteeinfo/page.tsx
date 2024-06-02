@@ -11,25 +11,30 @@ import {
   useColorModeValue,
   HStack,
   Textarea,
-  RadioGroup,
-  Radio,
   Select,
 } from "@chakra-ui/react";
 import { Editor } from "primereact/editor";
 import { UpdateMenteeProfile } from "../../lib/actions";
-import { useFormState } from "react-dom";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+interface FormState {
+  success?: boolean;
+  error?: string;
+}
+
 export default function MenteeInfo() {
-  const [goals, setGoals] = useState("");
-  const [file, setFile] = useState(null);
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+  const [goals, setGoals] = useState<string>("");
+  const [file, setFile] = useState<File | null>(null);
+  const [state, setState] = useState<FormState>({ success: undefined });
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files) {
+      setFile(event.target.files[0]);
+    }
   };
 
   const router = useRouter();
-  const [state, formAction] = useFormState(UpdateMenteeProfile, undefined);
 
   useEffect(() => {
     if (state?.success) {
@@ -37,15 +42,18 @@ export default function MenteeInfo() {
     }
   }, [state?.success, router]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const email = localStorage.getItem("userEmail");
-    const name = localStorage.getItem("firstName");
+    const formData = new FormData(event.currentTarget);
+    const email = localStorage.getItem("userEmail") || '';
+    const name = localStorage.getItem("firstName") || '';
     formData.append("email", email);
     formData.append("goals", goals);
-    formData.append("img", file);
-    formAction(formData);
+    if (file) {
+      formData.append("img", file);
+    }
+    const result = await UpdateMenteeProfile(state, formData);
+    setState(result);
   };
 
   return (
@@ -133,7 +141,7 @@ export default function MenteeInfo() {
             name="goals"
             id="goals"
             value={goals}
-            onTextChange={(e) => setGoals(e.htmlValue)}
+            onTextChange={(e) => setGoals(e.htmlValue || '')}
             style={{ height: "320px" }}
           />
 

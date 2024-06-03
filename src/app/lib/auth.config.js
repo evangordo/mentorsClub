@@ -33,13 +33,13 @@ export const authConfig = {
     },
     authorized({ auth, request }) {
       const user = auth?.user;
-      const isOnAdminPanel = request.nextUrl?.pathname.startsWith("/admin");
+      // const isOnAdminPanel = request.nextUrl?.pathname.startsWith("/admin");
       // const isOnBlogPage = request.nextUrl?.pathname.startsWith("/blog");
       const isOnLoginPage = request.nextUrl?.pathname.startsWith("/Login");
 
-      if (isOnAdminPanel && !user?.isAdmin) {
-        return false;
-      }
+      // if (isOnAdminPanel && !user?.isAdmin) {
+      //   return false;
+      // }
 
       // if (isOnBlogPage && !user) {
       //   return false;

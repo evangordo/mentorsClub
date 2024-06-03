@@ -1,12 +1,18 @@
+'use client'
 import React from 'react'
 import {
   Box,
   Heading,
   Text,
-  Tag,
   Flex,
   Container,
   VStack,
+
+  Modal,
+  ModalOverlay,
+  ModalContent,
+Button,
+useDisclosure
 } from '@chakra-ui/react'
 import InlineComponent from './Calendly'
 
@@ -29,6 +35,8 @@ const SingleMentorPage = ({
   img,
 }: SingleMentor) => {
  
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <Container maxW={'7xl'} p='12'>
       <Heading as='h1'>
@@ -58,10 +66,8 @@ const SingleMentorPage = ({
             <div className='corners2'>
               <img
                 alt=''
-                // rounded={'lg'}
                 height={230}
                 width={482}
-                // objectFit={'cover'}
                 src={img}
               />
             </div>
@@ -99,7 +105,16 @@ const SingleMentorPage = ({
           >
             {about}
           </Text>
-          <InlineComponent/>
+          <Button onClick={onOpen}>Open Modal
+
+<Modal isOpen={isOpen} onClose={onClose}>
+<ModalOverlay />
+        <ModalContent>
+          {/* <InlineComponent/> */}
+</ModalContent>
+</Modal>
+</Button>
+
           <Text>Member since: new Date(2021-04-06T19:01:27Z)</Text>
         </Box>
       </Box>
